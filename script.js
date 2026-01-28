@@ -73,10 +73,9 @@ class GameLevel extends Phaser.Scene {
     }
 
     preload() {
-        // Load the spritesheet. 
-        // We calculated 48px because your image has 6 columns.
+ 
         this.load.tilemapTiledJSON('level1', 'assets/level1.json');
-        this.load.image('dungeon_tiles', 'assets/0x72_DungeonTilesetII_v1.7.png');
+        this.load.image('sunny_tiles_png', 'assets/spr_tileset_sunnysideworld_16px.png');
         this.load.spritesheet('hero_sheet', 'assets/player.png', { 
             frameWidth: 48, 
             frameHeight: 48
@@ -84,17 +83,61 @@ class GameLevel extends Phaser.Scene {
 
         this.load.image('block', 'assets/block.png');
         this.load.image('wall', 'assets/wall.png');
+
+        this.load.spritesheet('professor', 'assets/doctor.png', { frameWidth: 16, frameHeight: 32 });
     }
 
     create() {
 
         const map = this.make.tilemap({ key: 'level1' });
-        const tileset = map.addTilesetImage('dungeon_tiles', 'dungeon_tiles');
-        const groundLayer = map.createLayer('Ground', tileset, 0, 0);
-        const wallsLayer = map.createLayer('Walls', tileset, 0, 0);
+        const sunnyTiles = map.addTilesetImage('sunny_world', 'sunny_tiles_png', 16, 16, 1, 2);
+        const groundLayer = map.createLayer('Ground', sunnyTiles, 0, 0);
+        const decorLayer = map.createLayer('Decoration', sunnyTiles, 0, 0);
+        const wallsLayer = map.createLayer('Walls', sunnyTiles, 0, 0);
         groundLayer.setScale(3);
+        decorLayer.setScale(3);
         wallsLayer.setScale(3);
+        wallsLayer.setCollisionByExclusion([-1]);
 
+        this.keyE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+
+        this.interactPrompt = this.add.text(0, 0, 'Press E', {
+        fontSize: '12px',
+        backgroundColor: '#000000',
+        padding: { x: 5, y: 5 }
+    }).setOrigin(0.5).setDepth(101).setVisible(false);
+
+
+    // 2. The Main Dialog Bubble (Top of Screen)
+    // We make a container or just a text box with a background
+    this.dialogBox = this.add.text(400, 50, '', {
+        fontSize: '18px',
+        color: '#ffffff',
+        backgroundColor: '#222222', // Dark Grey background
+        padding: { x: 20, y: 20 },
+        wordWrap: { width: 700 },
+        align: 'left',
+        fixedWidth: 700,  // Make it wide
+        fixedHeight: 150  // Make it tall
+    }).setOrigin(0.5, 0) // Anchor at Top-Center
+      .setScrollFactor(0) // Stick to camera (HUD)
+      .setDepth(200)      // Render on top of everything
+      .setVisible(false); // Hide at start
+      
+    // Add a fancy border to the dialog (Optional)
+    this.dialogBox.setStroke('#ffffff', 2);
+
+    this.storyText = this.add.text(400, 450, '', {
+            fontSize: '18px',
+            fill: '#ffffff',
+            backgroundColor: '#000000',
+            padding: { x: 20, y: 20 },
+            align: 'center',
+            wordWrap: { width: 600 }
+        }).setOrigin(0.5).setScrollFactor(0).setDepth(100).setVisible(false);
+
+
+        
        
         // --- ANIMATION SETUP ---
         // 1. Idle (Row 1: Frames 0-5)
@@ -146,9 +189,30 @@ class GameLevel extends Phaser.Scene {
         this.player.play('idle-down'); // Start breathing
         this.player.setScale(3); // Make him big (Retro style)
         this.player.setCollideWorldBounds(true);
-        this.player.body.setSize(14, 20);
+        this.player.body.setSize(8, 5);
         this.player.body.setOffset(17, 25);
         this.cursors = this.input.keyboard.createCursorKeys();
+
+        // NPC
+
+        if (this.currentLevelData.level === 1) {
+        
+        // Spawn him 50 pixels to the right of the player
+        this.npc = this.physics.add.sprite(this.player.x + 100, this.player.y, 'professor');
+        this.npc.setScale(3);           // Match the game scale
+        this.npc.setFrame(3);           // Frame 3 is usually "Front Facing" in 4-frame strips
+        this.npc.setImmovable(true);    // He won't get pushed around
+        this.npc.setDepth(10);
+        this.npc.body.setAllowGravity(false); // Stays in place
+        this.npc.body.setSize(10, 10);
+        this.npc.body.setOffset(0, 20);
+        
+        // Add collision so the physics body is active
+        this.physics.add.collider(this.player, this.npc);
+
+        
+    }
+
 
         // --- BLOCKS SETUP ---
         this.blocks = this.physics.add.group();
@@ -240,11 +304,28 @@ class GameLevel extends Phaser.Scene {
      wallsLayer.setCollisionByExclusion([-1]); // Everything in 'Walls' layer stops the player
         this.physics.add.collider(this.player, wallsLayer);
         this.physics.add.collider(this.blocks, wallsLayer);
+
+        // --- CAMERA & WORLD BOUNDS ---
+    // 1. Calculate the real size of the map (since we scaled by 3)
+    const mapWidth = map.widthInPixels * 3;
+    const mapHeight = map.heightInPixels * 3;
+
+    // 2. Expand the Physics World
+    // Without this, the player hits an invisible wall at 800px!
+    this.physics.world.setBounds(0, 0, mapWidth, mapHeight);
+
+    // 3. Make Camera Follow Player
+    this.cameras.main.startFollow(this.player);
+
+    // 4. Set Camera Limits
+    // This stops the camera from scrolling into the black void outside the map
+    this.cameras.main.setBounds(0, 0, mapWidth, mapHeight);
     
   
     }
 
     update() {
+        
         if (this.isGameFinished) return;
 
         this.player.setVelocity(0);
@@ -285,6 +366,75 @@ class GameLevel extends Phaser.Scene {
                 }
             }
         });
+
+   // NPC INTERACTION LOGIC
+    if (this.npc && this.currentLevelData.level === 1) {
+        
+        // 1. CALCULATE DISTANCE (Better than Overlap)
+        // This measures straight line distance between Player and Professor
+        const dist = Phaser.Math.Distance.Between(
+            this.player.x, this.player.y, 
+            this.npc.x, this.npc.y
+        );
+
+        // 2. CHECK RANGE (150 pixels is "Long Reach")
+        if (dist < 80) {
+            
+            // Show the prompt
+            this.interactPrompt.setPosition(this.npc.x, this.npc.y - 50);
+            this.interactPrompt.setVisible(true);
+
+            // CHECK INPUT
+            if (Phaser.Input.Keyboard.JustDown(this.keyE)) {
+                
+               // --- FACE THE PLAYER (Final Corrected Version) ---
+                const dx = this.player.x - this.npc.x;
+                const dy = this.player.y - this.npc.y;
+
+                // 1. Reset Flip (We don't need it since you have real Left/Right frames)
+                this.npc.setFlipX(false);
+
+                if (Math.abs(dx) > Math.abs(dy)) {
+                    // --- HORIZONTAL (Left / Right) ---
+                    if (dx > 0) {
+                        // Player is to the RIGHT (Positive)
+                        this.npc.setFrame(0); // You confirmed Frame 0 is Right
+                    } else {
+                        // Player is to the LEFT (Negative)
+                        this.npc.setFrame(2); // You confirmed Frame 2 is Left
+                    }
+                } else {
+                    // --- VERTICAL (Up / Down) ---
+                    if (dy > 0) {
+                        // Player is BELOW -> NPC looks Front
+                        this.npc.setFrame(3); 
+                    } else {
+                        // Player is ABOVE -> NPC looks Back
+                        this.npc.setFrame(1); 
+                    }
+                
+                }
+
+                // --- TOGGLE DIALOGUE ---
+                let isVisible = this.dialogBox.visible;
+                this.dialogBox.setVisible(!isVisible);
+                
+                if (!isVisible) {
+                    this.dialogBox.setText(
+                        "PROF. PRIME:\n" +
+                        "----------------\n" +
+                        "Stop! The Stagnation is here.\n" +
+                        "Use Arrow Keys to move.\n" +
+                        "Push the correct Answer Block into the Yellow Zone!"
+                    );
+                }
+            }
+        } else {
+            // Player is too far away
+            this.dialogBox.setVisible(false);
+            this.interactPrompt.setVisible(false);
+        }
+    }
     }
 
     handleWin() {
@@ -321,9 +471,11 @@ const config = {
     width: 800,
     height: 600,
     backgroundColor: '#222222',
+    pixelArt: true,   // Tells Phaser to stop blurring/smoothing the art
+    roundPixels: true, // Forces Phaser to snap to whole numbers (prevents half-pixel gaps)
     physics: {
         default: 'arcade',
-        arcade: { debug: true }
+        arcade: { debug: false }
     },
     scene: [MainMenu, GameLevel] 
 };
