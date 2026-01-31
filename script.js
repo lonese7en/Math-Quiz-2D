@@ -1,3 +1,8 @@
+// --- 1. SETUP CSS & CONTAINER (Fixes Desktop Sizing & Mobile Touch) ---
+const gameContainer = document.createElement('div');
+gameContainer.id = 'game-container';
+document.body.appendChild(gameContainer);
+
 const fontStyle = document.createElement('style');
 fontStyle.innerHTML = `
     @font-face {
@@ -5,12 +10,35 @@ fontStyle.innerHTML = `
         src: url('assets/Ithaca-LVB75.ttf');
     }
     body {
-        cursor: url('assets/cursor.png'), auto;
+        margin: 0;
+        padding: 0;
+        background-color: #111; /* Dark background for the webpage */
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden; /* No scrollbars */
+        touch-action: none; /* CRITICAL: Stops mobile browser from scrolling */
+    }
+    
+    #game-container {
+        /* DESKTOP: Forces the game to stay at 800x600 centered */
+        width: 800px;
+        height: 600px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    /* MOBILE: Overrides the fixed size to fill the phone screen */
+    @media (max-width: 800px), (max-height: 600px) {
+        #game-container {
+            width: 100vw;
+            height: 100vh;
+        }
     }
 `;
 document.head.appendChild(fontStyle);
 
-// --- 1. CORRECTION ROOM QUESTIONS ---
+// --- 2. CORRECTION ROOM QUESTIONS ---
 const correctionLevels = [
     { question: "Solve: 5x + 10 = 35", answer: 5, options: [5, 25, 10] },
     { question: "Simplify: x^2 * x^3", answer: "x^5", options: ["x^5", "x^6", "2x^5"] },
@@ -19,7 +47,7 @@ const correctionLevels = [
     { question: "Solve: 3(x - 2) = 9", answer: 5, options: [5, 3, 9] }
 ];
 
-// --- 2. MAIN GAME LEVELS ---
+// --- 3. MAIN GAME LEVELS ---
 const levels = [
     // --- AREA 1 (Blue Gem) ---
     { 
@@ -125,40 +153,30 @@ const levels = [
     }
 ];
 
+// --- 4. SCENES ---
+
 class MainMenu extends Phaser.Scene {
     constructor() { super('MainMenu'); }
 
     preload() {
-        // --- AUDIO ASSETS ---
         this.load.audio('title_music', 'assets/title_bgm.mp3');
         this.load.audio('click_sfx', 'assets/click.wav');
         this.load.image('cursor', 'assets/cursor.png');
-        // this.load.image('click', 'assets/click.png');
-
-        // --- NEW MENU ASSETS ---
         this.load.image('menu_bg', 'assets/menu-backdrop.png'); 
         this.load.image('title_img', 'assets/title.png');
         this.load.image('btn_long', 'assets/btn-long.png');
-        
-        // Preload these for game scene too
         this.load.image('btn_pause', 'assets/btn_pause.png');
         this.load.image('btn_restart', 'assets/btn_restart.png');
     }
 
     create() {
         this.input.setDefaultCursor('url(assets/cursor.png), pointer');
-        // this.input.on('pointerdown', () => { this.input.setDefaultCursor('url(assets/click.png), pointer'); });
         this.input.on('pointerup', () => { this.input.setDefaultCursor('url(assets/cursor.png), pointer'); });
 
-        // 1. SCROLLING BACKGROUND
-        // 400, 300 is center. 800, 600 is dimensions.
         this.scrollingBg = this.add.tileSprite(400, 300, 800, 600, 'menu_bg');
-        this.scrollingBg.setTileScale(0.5); // ZOOMED OUT as requested
-        
-        // 2. TITLE IMAGE - Scaled Down
+        this.scrollingBg.setTileScale(0.5); 
         this.add.image(400, 150, 'title_img').setScale(0.6);
 
-        // 3. AUDIO
         this.sound.stopAll();
         if (!this.sound.get('title_music')) {
             this.sound.add('title_music', { loop: true, volume: 0.5 }).play();
@@ -166,15 +184,10 @@ class MainMenu extends Phaser.Scene {
             this.sound.get('title_music').play();
         }
 
-        // --- HELPER FOR LONG BUTTONS ---
         const createButton = (x, y, text, callback, enabled = true) => {
             let container = this.add.container(x, y);
-            
-            // Image - Scaled Down
             let btn = this.add.image(0, 0, 'btn_long').setInteractive();
             btn.setScale(0.5);
-            
-            // Text
             let label = this.add.text(0, 0, text, { 
                 fontSize: '28px', fill: enabled ? '#ffffff' : '#888888', fontFamily: 'Ithaca',
                 stroke: '#000000', strokeThickness: 4
@@ -198,7 +211,6 @@ class MainMenu extends Phaser.Scene {
             }
         };
 
-        // 4. CREATE BUTTONS
         createButton(400, 300, 'NEW GAME', () => {
             this.sound.stopByKey('title_music');
             localStorage.setItem('lastPlayedLevel', 1); 
@@ -213,7 +225,6 @@ class MainMenu extends Phaser.Scene {
         createButton(400, 420, 'CONTINUE', () => {
             this.sound.stopByKey('title_music');
             if (isInDetention) {
-                // Resume detention room
                 const randomEasyQuestion = correctionLevels[Math.floor(Math.random() * correctionLevels.length)];
                 this.scene.start('GameLevel', { 
                     ...randomEasyQuestion, 
@@ -239,6 +250,98 @@ class MainMenu extends Phaser.Scene {
     }
 }
 
+// --- NEW CLASS: MOBILE CONTROLS (FIXED DETECTION) ---
+class MobileControls {
+    constructor(scene) {
+        this.scene = scene;
+        this.left = false;
+        this.right = false;
+        this.up = false;
+        this.down = false;
+
+        // Only show mobile controls on actual mobile devices, not on desktop with resized windows
+        const isMobileOS = !this.scene.sys.game.device.os.desktop;
+
+        if (isMobileOS) {
+            this.createControls();
+        }
+    }
+
+    createControls() {
+        this.scene.input.addPointer(2); // Enable Multi-touch
+
+        // We use the GAME config size (800x600), not the window size
+        // This ensures buttons stay in place even if the screen scales
+        const gameWidth = 800; 
+        const gameHeight = 600;
+
+        // --- D-PAD CONFIG (Bottom Left) ---
+        const dpadX = 110;
+        const dpadY = gameHeight - 110; 
+        const radius = 38;
+        
+        const createBtn = (x, y, rotation, propName) => {
+            let btn = this.scene.add.circle(x, y, radius, 0xffffff, 0.2)
+                .setScrollFactor(0) // CRITICAL: Sticks to camera
+                .setDepth(9999)     // CRITICAL: Renders on top of everything
+                .setInteractive();
+            
+            let arrow = this.scene.add.text(x, y, '➤', { fontSize: '24px', color: '#ffffff', fontStyle: 'bold' })
+                .setOrigin(0.5)
+                .setRotation(rotation)
+                .setScrollFactor(0)
+                .setDepth(10000);
+
+            // Capture "this" correctly
+            const mobileCtrl = this; 
+            
+            const press = () => { 
+                mobileCtrl[propName] = true; 
+                btn.setFillStyle(0xffffff, 0.5); 
+            };
+            const release = () => { 
+                mobileCtrl[propName] = false; 
+                btn.setFillStyle(0xffffff, 0.2);
+            };
+
+            btn.on('pointerdown', press);
+            // "pointerover" allows you to slide your thumb onto the button
+            btn.on('pointerover', (pointer) => { if (pointer.isDown) press(); });
+            btn.on('pointerup', release);
+            btn.on('pointerout', release);
+        };
+
+        createBtn(dpadX, dpadY - 65, -Math.PI / 2, 'up');    // UP
+        createBtn(dpadX, dpadY + 65, Math.PI / 2, 'down');   // DOWN
+        createBtn(dpadX - 65, dpadY, Math.PI, 'left');       // LEFT
+        createBtn(dpadX + 65, dpadY, 0, 'right');            // RIGHT
+
+        // --- ACTION BUTTON (Bottom Right) ---
+        const actionX = gameWidth - 100;
+        const actionY = gameHeight - 110;
+
+        let actionBtn = this.scene.add.circle(actionX, actionY, 45, 0xffff00, 0.3)
+            .setScrollFactor(0)
+            .setDepth(9999)
+            .setInteractive();
+
+        let actionText = this.scene.add.text(actionX, actionY, 'E', { 
+            fontSize: '32px', fontFamily: 'Ithaca', color: '#ffffff', fontStyle: 'bold' 
+        }).setOrigin(0.5).setScrollFactor(0).setDepth(10000);
+
+        const pressAction = () => {
+            actionBtn.setFillStyle(0xffff00, 0.6);
+            if (this.scene.handleInteraction) this.scene.handleInteraction();
+        };
+        const releaseAction = () => { actionBtn.setFillStyle(0xffff00, 0.3); };
+
+        actionBtn.on('pointerdown', pressAction);
+        actionBtn.on('pointerover', (pointer) => { if (pointer.isDown) pressAction(); });
+        actionBtn.on('pointerup', releaseAction);
+        actionBtn.on('pointerout', releaseAction);
+    }
+}
+
 class GameLevel extends Phaser.Scene {
     constructor() { super('GameLevel'); }
 
@@ -251,11 +354,10 @@ class GameLevel extends Phaser.Scene {
         this.returnToLevelNum = data.returnToLevelNum !== undefined ? data.returnToLevelNum : 1;
         this.isMultiSlot = data.multiAnswer || false;
         this.footstepTimer = 0;
-        this.currentBGMKey = null; // Track current background music
+        this.currentBGMKey = null; 
     }
 
     preload() {
-        // --- VISUAL ASSETS ---
         this.load.spritesheet('floor_items', 'assets/atlas_floor-16x16.png', { frameWidth: 16, frameHeight: 16 });
         this.load.image('sunny_tiles_extruded', 'assets/sunny_tiles_extruded.png');
         this.load.spritesheet('portal', 'assets/Dimensional_Portal.png', { frameWidth: 32, frameHeight: 32 });
@@ -266,25 +368,17 @@ class GameLevel extends Phaser.Scene {
         this.load.image('wall', 'assets/wall.png');
         this.load.spritesheet('professor', 'assets/doctor.png', { frameWidth: 16, frameHeight: 32 });
         this.load.spritesheet('sunny_tiles_png', 'assets/spr_tileset_sunnysideworld_16px.png', { frameWidth: 16, frameHeight: 16, margin: 1, spacing: 2 });
-
-        // Gems & Lab
         this.load.spritesheet('gem_blue', 'assets/spr_coin_azu.png', { frameWidth: 16, frameHeight: 16 });
         this.load.spritesheet('gem_green', 'assets/spr_coin_strip4.png', { frameWidth: 16, frameHeight: 16 });
         this.load.spritesheet('gem_yellow', 'assets/spr_coin_ama.png', { frameWidth: 16, frameHeight: 16 });
         this.load.spritesheet('orb', 'assets/orb_spritesheet.png', { frameWidth: 16, frameHeight: 16 }); 
         this.load.spritesheet('lab_portal', 'assets/portal_spritesheet.png', { frameWidth: 16, frameHeight: 16 }); 
-
-        // UI (Pause/Restart)
         this.load.image('btn_pause', 'assets/btn_pause.png');
         this.load.image('btn_restart', 'assets/btn_restart.png');
-
-        // Maps
         this.load.image('dungeon_tiles', 'assets/0x72_DungeonTilesetII_v1.7.png');
         this.load.image('dungeon_walls', 'assets/atlas_walls_low-16x16.png');
         this.load.image('laboratory_tiles', 'assets/tilesFloor.png');
         this.load.image('laboratory_walls', 'assets/tilesWalls.png');
-
-        // --- AUDIO ASSETS ---
         this.load.audio('game_bgm', 'assets/game_bgm.mp3');
         this.load.audio('river_bgm', 'assets/river.mp3');
         this.load.audio('cave_bgm', 'assets/cave.mp3');
@@ -305,7 +399,6 @@ class GameLevel extends Phaser.Scene {
 
     create() {
         this.input.setDefaultCursor('url(assets/cursor.png), pointer');
-        // this.input.on('pointerdown', () => { this.input.setDefaultCursor('url(assets/click.png), pointer'); });
         this.input.on('pointerup', () => { this.input.setDefaultCursor('url(assets/cursor.png), pointer'); });
 
         if (!this.isCorrectionRoom) {
@@ -314,8 +407,6 @@ class GameLevel extends Phaser.Scene {
 
         this.cameras.main.fadeFrom(500, 0, 0, 0, false);
 
-        // --- MUSIC MANAGER ---
-        // Music plays continuously within same area, switches only on area change
         let currentLvl = this.currentLevelData.level;
         let targetMusicKey = 'game_bgm'; 
 
@@ -329,22 +420,18 @@ class GameLevel extends Phaser.Scene {
             targetMusicKey = 'river_bgm';
         }
 
-        // Check if any BGM is currently playing
         let playingBGM = this.sound.getAll().find(s => s.isPlaying && s.key.includes('bgm'));
         
         if (!playingBGM || playingBGM.key !== targetMusicKey) {
-            // Different area or no music playing - switch to new area music
             if (playingBGM) {
                 playingBGM.stop();
             }
-            // Get or create the target music and play it
             let targetSound = this.sound.get(targetMusicKey);
             if (!targetSound) {
                 targetSound = this.sound.add(targetMusicKey, { loop: true, volume: 0.4 });
             }
             targetSound.play();
         }
-        // If targetMusicKey is already playing, do nothing - music continues uninterrupted
 
         let demoText = this.add.text(780, 580, 'DEMO VERSION', { fontSize: '16px', fill: '#ff0000', fontFamily: 'monospace' })
             .setOrigin(1, 1).setScrollFactor(0).setDepth(1000);
@@ -491,6 +578,9 @@ class GameLevel extends Phaser.Scene {
         this.physics.add.overlap(this.blocks, this.cliffEdges, (block, edge) => {
              if (edge.landX !== undefined) this.handleBlockDrop(block, edge.landX, edge.landY);
         }, null, this);
+
+        // --- INIT MOBILE CONTROLS ---
+        this.mobileControls = new MobileControls(this);
     }
 
     createBlocks() {
@@ -547,17 +637,13 @@ class GameLevel extends Phaser.Scene {
 
         let pauseBtn = this.add.image(100, 40, 'btn_pause').setInteractive().setScale(0.21).setScrollFactor(0).setDepth(100);
         
-        // Create pause menu (initially invisible)
-        // Position at (0,0) since we're using scrollFactor(0) for screen coordinates
         this.pauseMenuContainer = this.add.container(0, 0).setScrollFactor(0).setDepth(300).setVisible(false);
         
-        // Grey overlay covering entire screen
         let overlay = this.add.rectangle(400, 300, 800, 600, 0x000000, 0.7).setOrigin(0.5);
         overlay.setScrollFactor(0);
         overlay.setDepth(300);
         this.pauseMenuContainer.add(overlay);
         
-        // Title - positioned in screen space
         let pauseTitle = this.add.text(400, 100, 'PAUSED', { 
             fontSize: '48px', fontFamily: 'Ithaca', fill: '#ffffff', stroke: '#000', strokeThickness: 4 
         }).setOrigin(0.5);
@@ -565,7 +651,6 @@ class GameLevel extends Phaser.Scene {
         pauseTitle.setDepth(310);
         this.pauseMenuContainer.add(pauseTitle);
         
-        // Helper to create pause menu buttons in screen space
         const createPauseButton = (screenY, text, callback) => {
             let btn = this.add.image(400, screenY, 'btn_long');
             btn.setScale(0.35);
@@ -593,7 +678,6 @@ class GameLevel extends Phaser.Scene {
             this.pauseMenuContainer.add(label);
         };
         
-        // Add pause menu buttons using screen coordinates
         createPauseButton(170, 'RESUME', () => {
             this.physics.resume();
             this.pauseMenuContainer.setVisible(false);
@@ -621,15 +705,14 @@ class GameLevel extends Phaser.Scene {
             if (this.physics.world.isPaused) { 
                 this.physics.resume(); 
                 this.pauseMenuContainer.setVisible(false);
-                pauseBtn.setTint(0xffffff); // Normal
+                pauseBtn.setTint(0xffffff); 
             } else { 
                 this.physics.pause(); 
                 this.pauseMenuContainer.setVisible(true);
-                pauseBtn.setTint(0x888888); // Dimmed
+                pauseBtn.setTint(0x888888); 
             }
         });
         
-        // Allow ESC to toggle pause
         this.input.keyboard.on('keydown-ESC', () => {
             this.sound.play('click_sfx');
             if (this.physics.world.isPaused) { 
@@ -656,9 +739,21 @@ class GameLevel extends Phaser.Scene {
         qContainer.add(this.add.text(0, 0, `${levelTitle}: ${this.currentLevelData.question}`, { fontSize: '28px', fontFamily: 'Ithaca', fill: '#4a3d2e', wordWrap: { width: 480 }, align: 'center' }).setOrigin(0.5));
     }
 
+    handleInteraction() {
+        if (this.npc && !this.isCorrectionRoom && this.currentLevelData.level === 1) {
+            const dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.npc.x, this.npc.y);
+            if (dist < 80) {
+                this.showDialogue("PROF. PRIME:\n----------------\nHurry! Use Arrow Keys to move.\nPush the correct Answer Gem into the Platform!");
+            }
+        }
+    }
+
     update(time, delta) {
         if (this.isGameFinished || this.isLevelComplete) return; 
 
+        // --- INTERACTION ---
+        if (Phaser.Input.Keyboard.JustDown(this.keyE)) { this.handleInteraction(); }
+        
         if (Phaser.Input.Keyboard.JustDown(this.keyN)) { this.handleWin(); }
         if (Phaser.Input.Keyboard.JustDown(this.keyD)) { 
             this.debugEnabled = !this.debugEnabled;
@@ -671,19 +766,24 @@ class GameLevel extends Phaser.Scene {
         this.player.setVelocity(0);
         let moving = false;
         
-        if (this.cursors.left.isDown) {
+        // --- MOVEMENT LOGIC (KEYBOARD OR MOBILE) ---
+        const left = this.cursors.left.isDown || (this.mobileControls && this.mobileControls.left);
+        const right = this.cursors.right.isDown || (this.mobileControls && this.mobileControls.right);
+        const up = this.cursors.up.isDown || (this.mobileControls && this.mobileControls.up);
+        const down = this.cursors.down.isDown || (this.mobileControls && this.mobileControls.down);
+
+        if (left) {
             this.player.setVelocityX(-200); this.player.anims.play('run-side', true); this.player.setFlipX(true); moving = true;
-        } else if (this.cursors.right.isDown) {
+        } else if (right) {
             this.player.setVelocityX(200); this.player.anims.play('run-side', true); this.player.setFlipX(false); moving = true;
-        } else if (this.cursors.up.isDown) {
+        } else if (up) {
             this.player.setVelocityY(-200); this.player.anims.play('run-up', true); moving = true;
-        } else if (this.cursors.down.isDown) {
+        } else if (down) {
             this.player.setVelocityY(200); this.player.anims.play('run-down', true); moving = true;
         } else {
             this.player.anims.play('idle-down', true);
         }
 
-        // --- FOOTSTEPS SOUND ---
         if (moving) {
             this.footstepTimer += delta;
             if (this.footstepTimer > 350) { 
@@ -739,18 +839,14 @@ class GameLevel extends Phaser.Scene {
         if (this.npc && !this.isCorrectionRoom && this.currentLevelData.level === 1) {
             const dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.npc.x, this.npc.y);
             if (dist < 80) {
-                // FIX: NPC TURNS TO FACE PLAYER
                 if (this.player.x < this.npc.x) {
-                    this.npc.setFlipX(true); // Player is on left, NPC faces left
+                    this.npc.setFlipX(true); 
                 } else {
-                    this.npc.setFlipX(false); // Player is on right, NPC faces right
+                    this.npc.setFlipX(false); 
                 }
 
                 this.interactPrompt.setPosition(this.npc.x, this.npc.y - 50).setVisible(true);
                 if (this.npcMarker) this.npcMarker.setVisible(false);
-                if (Phaser.Input.Keyboard.JustDown(this.keyE)) {
-                    this.showDialogue("PROF. PRIME:\n----------------\nHurry! Use Arrow Keys to move.\nPush the correct Answer Gem into the Platform!");
-                }
             } else {
                 this.interactPrompt.setVisible(false);
                 if (this.npcMarker) this.npcMarker.setVisible(true);
@@ -804,7 +900,6 @@ class GameLevel extends Phaser.Scene {
         this.physics.pause();
         this.player.anims.stop();
         this.player.body.setVelocity(0); 
-        // --- MUSIC FIX: Removed stopAll() ---
         this.sound.play('victory_sfx');
         
         let msg = this.isCorrectionRoom ? "DETENTION PASSED!" : `LEVEL ${this.currentLevelData.level}\nCOMPLETE!`;
@@ -823,14 +918,12 @@ class GameLevel extends Phaser.Scene {
                     if (levelToRetry) {
                         this.scene.start('GameLevel', { ...levelToRetry, isCorrectionRoom: false });
                     } else {
-                        console.warn("Level data not found, returning to menu.");
                         this.scene.start('MainMenu'); 
                     }
                 } else {
                     if (this.currentLevelData.level === 20) {
                         this.scene.start('GameWon');
                     } else {
-                        // Demo Skip Logic
                         let nextLevelNum;
                         if (this.currentLevelData.level === 6) nextLevelNum = 12;
                         else if (this.currentLevelData.level === 12) nextLevelNum = 20;
@@ -852,7 +945,6 @@ class GameLevel extends Phaser.Scene {
         this.isGameFinished = true;
         this.physics.pause();
         this.player.anims.stop();
-        // --- MUSIC FIX: Removed stopAll() ---
         this.sound.play('gameover_sfx');
 
         if (this.isCorrectionRoom) {
@@ -922,8 +1014,6 @@ class GameWon extends Phaser.Scene {
     constructor() { super('GameWon'); }
 
     create() {
-        // --- MUSIC FIX: Removed stopAll() ---
-        // Lab music will continue, and Victory SFX will play on top.
         this.sound.play('victory_sfx'); 
 
         this.add.text(400, 200, 'CONGRATULATIONS!', { fontSize: '48px', fill: '#ffff00', fontFamily: 'Ithaca' }).setOrigin(0.5);
@@ -940,8 +1030,14 @@ class GameWon extends Phaser.Scene {
 
 const config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    // IMPORTANT: Attach the game to our custom container
+    parent: 'game-container',
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 800,
+        height: 600
+    },
     backgroundColor: '#222222',
     pixelArt: true,
     roundPixels: true,
