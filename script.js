@@ -30,19 +30,19 @@ const levels = [
         playerStart: { x: 400, y: 500 },
         blockStart: { x: 200, y: 250 },
         blockPositions: [{ x: 200, y: 250 }, { x: 400, y: 250 }, { x: 600, y: 250 }],
-        answerZone: { x: 700, y: 450 },
-        portalPos: { x: 700, y: 300 }
+        answerZone: { x: 694, y: 358 },
+        portalPos: { x: 890, y: 392 }
     },
     { 
         level: 2,
         question: "Find derivative: y = x^4", 
         answer: "4x^3", 
         options: ["4x^3", "x^3", "4x"],
-        playerStart: { x: 100, y: 100 },
+        playerStart: { x: 395, y: 648 },
         blockStart: { x: 300, y: 200 },
-        blockPositions: [{ x: 300, y: 200 }, { x: 300, y: 350 }, { x: 300, y: 500 }],
-        answerZone: { x: 600, y: 300 },
-        portalPos: { x: 500, y: 200 }
+        blockPositions: [{ x: 466, y: 458 }, { x: 522, y: 256 }, { x: 300, y: 500 }],
+        answerZone: { x: 310, y: 166 },
+        portalPos: { x: 208, y: 341 }
     },
     { 
         level: 3,
@@ -51,9 +51,9 @@ const levels = [
         options: [7, "7x", 0],
         playerStart: { x: 400, y: 300 },
         blockStart: { x: 250, y: 100 },
-        blockPositions: [{ x: 250, y: 100 }, { x: 250, y: 250 }, { x: 250, y: 400 }],
-        answerZone: { x: 700, y: 400 },
-        portalPos: { x: 700, y: 400 }
+        blockPositions: [{ x: 562, y: 583 }, { x: 551, y: 171 }, { x: 723, y: 494 }],
+        answerZone: { x: 692, y: 353 },
+        portalPos: { x: 388, y: 333 }
     },
     { 
         level: 4,
@@ -63,7 +63,7 @@ const levels = [
         playerStart: { x: 400, y: 500 },
         blockStart: { x: 200, y: 250 },
         blockPositions: [{ x: 200, y: 250 }, { x: 900, y: 100 }, { x: 200, y: 550 }],
-        answerZone: { x: 700, y: 450 },
+        answerZone: { x: 505, y: 168 },
         portalPos: { x: 700, y: 300 }
     },
     { 
@@ -73,8 +73,8 @@ const levels = [
         options: ["12x^3", "3x^4", "12x"],
         playerStart: { x: 620, y: 1620 },
         blockStart: { x: 200, y: 250 },
-        blockPositions: [{ x: 670, y: 1030 }, { x: 115, y: 790 }, { x: 1150, y: 890 }],
-        answerZone: { x: 940, y: 660 },
+        blockPositions: [{ x: 670, y: 1030 }, { x: 115, y: 790 }, { x: 798, y: 751 }],
+        answerZone: { x: 264, y: 695 },
         portalPos: { x: 621, y: 286 },
         gatePos: { x: 578, y: 480 } 
     },
@@ -86,9 +86,9 @@ const levels = [
         options: ["TRUE", "FALSE"], 
         playerStart: { x: 400, y: 500 },
         blockStart: { x: 200, y: 250 },
-        blockPositions: [{ x: 300, y: 250 }, { x: 500, y: 250 }], 
+        blockPositions: [{ x: 136, y: 189 }, { x: 128, y: 535 }], 
         answerZone: { x: 880, y: 358 },
-        portalPos: { x: 700, y: 300 }
+        portalPos: { x: 259, y: 167 }
     },
     // --- AREA 3: THE CAVE (Yellow Gem) ---
     { 
@@ -96,11 +96,11 @@ const levels = [
         question: "Find derivative: y = 7x", 
         answer: 7, 
         options: [7, "7x", 0],
-        playerStart: { x: 400, y: 300 },
+        playerStart: { x: 463, y: 410 },
         blockStart: { x: 250, y: 100 },
-        blockPositions: [{ x: 250, y: 100 }, { x: 250, y: 250 }, { x: 250, y: 400 }],
-        answerZone: { x: 700, y: 400 },
-        portalPos: { x: 700, y: 400 }
+        blockPositions: [{ x: 349, y: 568 }, { x: 420, y: 568 }, { x: 480, y: 568 }],
+        answerZone: { x: 851, y: 437 },
+        portalPos: { x: 500, y: 309 }
     },
     // --- AREA 4: THE LABORATORY (Orb) ---
     { 
@@ -109,9 +109,9 @@ const levels = [
         answer: "29.8", 
         multiAnswer: true,
         slots: [
-            { x: 550, y: 400, requiredValue: "2" },
-            { x: 600, y: 400, requiredValue: "9" },
-            { x: 650, y: 400, requiredValue: ".8" }
+            { x: 455, y: 146, requiredValue: "2" },
+            { x: 502, y: 146, requiredValue: "9" },
+            { x: 547, y: 146, requiredValue: ".8" }
         ],
         options: ["2", "9", ".8", "5", "0", "1"], 
         playerStart: { x: 400, y: 500 },
@@ -121,7 +121,7 @@ const levels = [
             { x: 200, y: 350 }, { x: 300, y: 350 }, { x: 400, y: 350 }
         ],
         answerZone: { x: 0, y: 0 }, 
-        portalPos: { x: 600, y: 200 }
+        portalPos: { x: 860, y: 379 }
     }
 ];
 
@@ -133,20 +133,32 @@ class MainMenu extends Phaser.Scene {
         this.load.audio('title_music', 'assets/title_bgm.mp3');
         this.load.audio('click_sfx', 'assets/click.wav');
         this.load.image('cursor', 'assets/cursor.png');
-        this.load.image('click', 'assets/click.png');
+        // this.load.image('click', 'assets/click.png');
+
+        // --- NEW MENU ASSETS ---
+        this.load.image('menu_bg', 'assets/menu-backdrop.png'); 
+        this.load.image('title_img', 'assets/title.png');
+        this.load.image('btn_long', 'assets/btn-long.png');
+        
+        // Preload these for game scene too
+        this.load.image('btn_pause', 'assets/btn_pause.png');
+        this.load.image('btn_restart', 'assets/btn_restart.png');
     }
 
     create() {
         this.input.setDefaultCursor('url(assets/cursor.png), pointer');
-        this.input.on('pointerdown', () => { this.input.setDefaultCursor('url(assets/click.png), pointer'); });
+        // this.input.on('pointerdown', () => { this.input.setDefaultCursor('url(assets/click.png), pointer'); });
         this.input.on('pointerup', () => { this.input.setDefaultCursor('url(assets/cursor.png), pointer'); });
 
-        this.add.text(400, 200, 'MATH PUZZLE QUEST', { fontSize: '40px', fill: '#fff', fontFamily: 'Ithaca' }).setOrigin(0.5);
+        // 1. SCROLLING BACKGROUND
+        // 400, 300 is center. 800, 600 is dimensions.
+        this.scrollingBg = this.add.tileSprite(400, 300, 800, 600, 'menu_bg');
+        this.scrollingBg.setTileScale(0.5); // ZOOMED OUT as requested
         
-        let demoText = this.add.text(780, 580, 'DEMO VERSION', { fontSize: '16px', fill: '#ff0000', fontFamily: 'monospace' }).setOrigin(1, 1);
-        this.tweens.add({ targets: demoText, alpha: 0, duration: 800, yoyo: true, repeat: -1 });
+        // 2. TITLE IMAGE - Scaled Down
+        this.add.image(400, 150, 'title_img').setScale(0.6);
 
-        // Play Title Music
+        // 3. AUDIO
         this.sound.stopAll();
         if (!this.sound.get('title_music')) {
             this.sound.add('title_music', { loop: true, volume: 0.5 }).play();
@@ -154,30 +166,76 @@ class MainMenu extends Phaser.Scene {
             this.sound.get('title_music').play();
         }
 
-        let newGameBtn = this.add.text(400, 300, 'NEW GAME', { fontSize: '24px', fill: '#0f0', fontFamily: 'Ithaca' })
-            .setOrigin(0.5).setInteractive();
+        // --- HELPER FOR LONG BUTTONS ---
+        const createButton = (x, y, text, callback, enabled = true) => {
+            let container = this.add.container(x, y);
+            
+            // Image - Scaled Down
+            let btn = this.add.image(0, 0, 'btn_long').setInteractive();
+            btn.setScale(0.5);
+            
+            // Text
+            let label = this.add.text(0, 0, text, { 
+                fontSize: '28px', fill: enabled ? '#ffffff' : '#888888', fontFamily: 'Ithaca',
+                stroke: '#000000', strokeThickness: 4
+            }).setOrigin(0.5);
 
-        newGameBtn.on('pointerdown', () => {
-            this.sound.play('click_sfx');
+            container.add([btn, label]);
+            
+            if (!enabled) {
+                btn.setAlpha(0.5);
+                btn.disableInteractive();
+            } else {
+                btn.on('pointerover', () => { btn.setTint(0xcccccc); });
+                btn.on('pointerout', () => { btn.clearTint(); });
+                btn.on('pointerdown', () => {
+                    this.sound.play('click_sfx');
+                    this.tweens.add({
+                        targets: container, scaleX: 0.95, scaleY: 0.95, duration: 50, yoyo: true,
+                        onComplete: callback
+                    });
+                });
+            }
+        };
+
+        // 4. CREATE BUTTONS
+        createButton(400, 300, 'NEW GAME', () => {
             this.sound.stopByKey('title_music');
             localStorage.setItem('lastPlayedLevel', 1); 
             this.scene.start('GameLevel', { ...levels[0], isCorrectionRoom: false }); 
         });
 
-        let continueBtn = this.add.text(400, 360, 'CONTINUE', { fontSize: '24px', fill: '#0ff', fontFamily: 'Ithaca' })
-            .setOrigin(0.5).setInteractive();
-
-        continueBtn.on('pointerdown', () => {
-            this.sound.play('click_sfx');
-            this.sound.stopByKey('title_music');
-            const savedLevelNum = parseInt(localStorage.getItem('lastPlayedLevel')) || 1;
-            const levelToLoad = levels.find(l => l.level === savedLevelNum) || levels[0];
-            this.scene.start('GameLevel', { ...levelToLoad, isCorrectionRoom: false }); 
-        });
+        const savedLevelNum = parseInt(localStorage.getItem('lastPlayedLevel')) || 1;
+        const isInDetention = localStorage.getItem('isInDetention') === 'true';
+        const detentionReturnLevel = parseInt(localStorage.getItem('detentionReturnLevel')) || 1;
+        const canContinue = savedLevelNum > 1 || isInDetention;
         
-        this.input.on('pointerdown', () => {
-            if (this.sound.context.state === 'suspended') { this.sound.context.resume(); }
-        });
+        createButton(400, 420, 'CONTINUE', () => {
+            this.sound.stopByKey('title_music');
+            if (isInDetention) {
+                // Resume detention room
+                const randomEasyQuestion = correctionLevels[Math.floor(Math.random() * correctionLevels.length)];
+                this.scene.start('GameLevel', { 
+                    ...randomEasyQuestion, 
+                    level: "DETENTION", 
+                    isCorrectionRoom: true,
+                    returnToLevelNum: detentionReturnLevel 
+                });
+            } else {
+                const levelToLoad = levels.find(l => l.level === savedLevelNum) || levels[0];
+                this.scene.start('GameLevel', { ...levelToLoad, isCorrectionRoom: false }); 
+            }
+        }, canContinue);
+
+        let demoText = this.add.text(780, 580, 'DEMO VERSION', { fontSize: '16px', fill: '#ff0000', fontFamily: 'monospace' }).setOrigin(1, 1);
+        this.tweens.add({ targets: demoText, alpha: 0, duration: 800, yoyo: true, repeat: -1 });
+    }
+
+    update() {
+        if (this.scrollingBg) {
+            this.scrollingBg.tilePositionX += 0.5;
+            this.scrollingBg.tilePositionY += 0.2;
+        }
     }
 }
 
@@ -193,11 +251,13 @@ class GameLevel extends Phaser.Scene {
         this.returnToLevelNum = data.returnToLevelNum !== undefined ? data.returnToLevelNum : 1;
         this.isMultiSlot = data.multiAnswer || false;
         this.footstepTimer = 0;
+        this.currentBGMKey = null; // Track current background music
     }
 
     preload() {
         // --- VISUAL ASSETS ---
         this.load.spritesheet('floor_items', 'assets/atlas_floor-16x16.png', { frameWidth: 16, frameHeight: 16 });
+        this.load.image('sunny_tiles_extruded', 'assets/sunny_tiles_extruded.png');
         this.load.spritesheet('portal', 'assets/Dimensional_Portal.png', { frameWidth: 32, frameHeight: 32 });
         this.load.image('gate_locked', 'assets/gate_locked.png');
         this.load.image('gate_open', 'assets/gate_open.png');
@@ -214,6 +274,10 @@ class GameLevel extends Phaser.Scene {
         this.load.spritesheet('orb', 'assets/orb_spritesheet.png', { frameWidth: 16, frameHeight: 16 }); 
         this.load.spritesheet('lab_portal', 'assets/portal_spritesheet.png', { frameWidth: 16, frameHeight: 16 }); 
 
+        // UI (Pause/Restart)
+        this.load.image('btn_pause', 'assets/btn_pause.png');
+        this.load.image('btn_restart', 'assets/btn_restart.png');
+
         // Maps
         this.load.image('dungeon_tiles', 'assets/0x72_DungeonTilesetII_v1.7.png');
         this.load.image('dungeon_walls', 'assets/atlas_walls_low-16x16.png');
@@ -224,7 +288,7 @@ class GameLevel extends Phaser.Scene {
         this.load.audio('game_bgm', 'assets/game_bgm.mp3');
         this.load.audio('river_bgm', 'assets/river.mp3');
         this.load.audio('cave_bgm', 'assets/cave.mp3');
-        this.load.audio('lab_bgm', 'assets/laboratory.mp3'); // NEW: Lab BGM
+        this.load.audio('lab_bgm', 'assets/laboratory.mp3');
         this.load.audio('correction_bgm', 'assets/correction.mp3');
         this.load.audio('footstep_sfx', 'assets/footstep.mp3');
         this.load.audio('talking_sfx', 'assets/talking.mp3');
@@ -241,7 +305,7 @@ class GameLevel extends Phaser.Scene {
 
     create() {
         this.input.setDefaultCursor('url(assets/cursor.png), pointer');
-        this.input.on('pointerdown', () => { this.input.setDefaultCursor('url(assets/click.png), pointer'); });
+        // this.input.on('pointerdown', () => { this.input.setDefaultCursor('url(assets/click.png), pointer'); });
         this.input.on('pointerup', () => { this.input.setDefaultCursor('url(assets/cursor.png), pointer'); });
 
         if (!this.isCorrectionRoom) {
@@ -251,24 +315,36 @@ class GameLevel extends Phaser.Scene {
         this.cameras.main.fadeFrom(500, 0, 0, 0, false);
 
         // --- MUSIC MANAGER ---
+        // Music plays continuously within same area, switches only on area change
         let currentLvl = this.currentLevelData.level;
         let targetMusicKey = 'game_bgm'; 
 
         if (this.isCorrectionRoom) {
             targetMusicKey = 'correction_bgm';
         } else if (currentLvl >= 19) {
-            targetMusicKey = 'lab_bgm'; // NEW: Lab Music
+            targetMusicKey = 'lab_bgm';
         } else if (currentLvl >= 12) {
             targetMusicKey = 'cave_bgm';
         } else if (currentLvl >= 6) {
             targetMusicKey = 'river_bgm';
         }
 
-        let currentSound = this.sound.getAll('audio').find(s => s.isPlaying && s.key.includes('bgm'));
-        if (!currentSound || currentSound.key !== targetMusicKey) {
-            this.sound.stopAll();
-            this.sound.add(targetMusicKey, { loop: true, volume: 0.4 }).play();
+        // Check if any BGM is currently playing
+        let playingBGM = this.sound.getAll().find(s => s.isPlaying && s.key.includes('bgm'));
+        
+        if (!playingBGM || playingBGM.key !== targetMusicKey) {
+            // Different area or no music playing - switch to new area music
+            if (playingBGM) {
+                playingBGM.stop();
+            }
+            // Get or create the target music and play it
+            let targetSound = this.sound.get(targetMusicKey);
+            if (!targetSound) {
+                targetSound = this.sound.add(targetMusicKey, { loop: true, volume: 0.4 });
+            }
+            targetSound.play();
         }
+        // If targetMusicKey is already playing, do nothing - music continues uninterrupted
 
         let demoText = this.add.text(780, 580, 'DEMO VERSION', { fontSize: '16px', fill: '#ff0000', fontFamily: 'monospace' })
             .setOrigin(1, 1).setScrollFactor(0).setDepth(1000);
@@ -283,7 +359,7 @@ class GameLevel extends Phaser.Scene {
         }
 
         const map = this.make.tilemap({ key: mapKey });
-        const sunnyTiles = map.addTilesetImage('sunny_world', 'sunny_tiles_png', 16, 16, 0, 0);
+        const sunnyTiles = map.addTilesetImage('sunny_world', 'sunny_tiles_extruded', 16, 16, 1, 2);
         const dungeonTiles = map.addTilesetImage('dungeon_tiles', 'dungeon_tiles');
         const dungeonWalls = map.addTilesetImage('dungeon_walls', 'dungeon_walls');
         const labFloor = map.addTilesetImage('tilesFloor', 'laboratory_tiles') || map.addTilesetImage('laboratory_tiles', 'laboratory_tiles');
@@ -335,21 +411,14 @@ class GameLevel extends Phaser.Scene {
             
             this.npcMarker = this.add.text(this.npc.x, this.npc.y - 50, '!', {
                 fontSize: '32px', fontFamily: 'Ithaca', fill: '#ffff00', stroke: '#000', strokeThickness: 4
-            }).setOrigin(0.5).setDepth(20);
+            }).setOrigin(0.5).setDepth(60);
             this.tweens.add({ targets: this.npcMarker, y: this.npc.y - 60, duration: 500, yoyo: true, repeat: -1 });
         }
 
         this.stoneGates = this.physics.add.group({ immovable: true, allowGravity: false }); 
-        if (!this.isCorrectionRoom) {
-            if (this.currentLevelData.level === 5) {
-                let g1 = this.stoneGates.create(600 * 3, 512 * 3, 'gate_locked');
-                g1.setScale(3).setOrigin(0,0).setDepth(15).setVisible(true);
-                let g2 = this.stoneGates.create(645 * 3, 513 * 3, 'gate_locked');
-                g2.setScale(3).setOrigin(0,0).setDepth(15).setVisible(true);
-            } else if (this.currentLevelData.gatePos) {
-                let g = this.stoneGates.create(this.currentLevelData.gatePos.x, this.currentLevelData.gatePos.y, 'gate_locked');
-                g.setScale(3).setOrigin(0, 0).setDepth(15).setVisible(true);
-            }
+        if (!this.isCorrectionRoom && this.currentLevelData.gatePos) {
+            let g = this.stoneGates.create(this.currentLevelData.gatePos.x, this.currentLevelData.gatePos.y, 'gate_locked');
+            g.setScale(3).setOrigin(0, 0).setDepth(40).setVisible(true);
         }
         this.physics.add.collider(this.player, this.stoneGates);
 
@@ -426,7 +495,7 @@ class GameLevel extends Phaser.Scene {
 
     createBlocks() {
         let xPos = this.isCorrectionRoom ? 200 : this.currentLevelData.blockStart.x;
-        let yPos = this.isCorrectionRoom ? 200 : this.currentLevelData.blockStart.y;
+        let yPos = this.isCorrectionRoom ? 100 : this.currentLevelData.blockStart.y;
         let lvl = this.currentLevelData.level;
         
         let spriteKey = 'gem_blue';
@@ -445,7 +514,7 @@ class GameLevel extends Phaser.Scene {
         this.currentLevelData.options.forEach((val, index) => {
             let blockPos;
             if (this.isCorrectionRoom) {
-                blockPos = { x: xPos, y: yPos + (index * 150) };
+                blockPos = { x: xPos, y: yPos + (index * 50) };
             } else {
                  blockPos = (this.currentLevelData.blockPositions && this.currentLevelData.blockPositions[index]) 
                            ? this.currentLevelData.blockPositions[index] 
@@ -461,7 +530,7 @@ class GameLevel extends Phaser.Scene {
             block.value = val;
             
             let text = this.add.text(0, 0, val, { fontSize: '24px', color: '#ffffff', stroke: '#000', strokeThickness: 4, fontFamily: 'Ithaca', fontStyle: 'bold' }).setOrigin(0.5);
-            text.setDepth(51); 
+            text.setDepth(30); 
             block.myText = text;
             block.updateText = function() { text.x = this.x; text.y = this.y; };
             yPos += 150;
@@ -469,20 +538,109 @@ class GameLevel extends Phaser.Scene {
     }
 
     setupUI() {
-        let restartBtn = this.add.text(20, 20, '↺', { fontSize: '40px', fontFamily: 'Ithaca', fill: '#ffffff', backgroundColor: '#000000' })
-            .setPadding(5).setOrigin(0).setScrollFactor(0).setInteractive();
+        let restartBtn = this.add.image(40, 40, 'btn_restart').setInteractive().setScale(0.21).setScrollFactor(0);
         restartBtn.on('pointerdown', () => { 
             this.sound.play('click_sfx');
             this.physics.pause(); this.scene.restart(); 
         });
         this.input.keyboard.on('keydown-R', () => { this.physics.pause(); this.scene.restart(); });
 
-        let pauseBtn = this.add.text(80, 20, 'II', { fontSize: '40px', fontFamily: 'Ithaca', fill: '#ffffff', backgroundColor: '#000000' })
-            .setPadding(5).setOrigin(0).setScrollFactor(0).setInteractive();
+        let pauseBtn = this.add.image(100, 40, 'btn_pause').setInteractive().setScale(0.21).setScrollFactor(0).setDepth(100);
+        
+        // Create pause menu (initially invisible)
+        // Position at (0,0) since we're using scrollFactor(0) for screen coordinates
+        this.pauseMenuContainer = this.add.container(0, 0).setScrollFactor(0).setDepth(300).setVisible(false);
+        
+        // Grey overlay covering entire screen
+        let overlay = this.add.rectangle(400, 300, 800, 600, 0x000000, 0.7).setOrigin(0.5);
+        overlay.setScrollFactor(0);
+        overlay.setDepth(300);
+        this.pauseMenuContainer.add(overlay);
+        
+        // Title - positioned in screen space
+        let pauseTitle = this.add.text(400, 100, 'PAUSED', { 
+            fontSize: '48px', fontFamily: 'Ithaca', fill: '#ffffff', stroke: '#000', strokeThickness: 4 
+        }).setOrigin(0.5);
+        pauseTitle.setScrollFactor(0);
+        pauseTitle.setDepth(310);
+        this.pauseMenuContainer.add(pauseTitle);
+        
+        // Helper to create pause menu buttons in screen space
+        const createPauseButton = (screenY, text, callback) => {
+            let btn = this.add.image(400, screenY, 'btn_long');
+            btn.setScale(0.35);
+            btn.setOrigin(0.5);
+            btn.setInteractive();
+            btn.setScrollFactor(0);
+            btn.setDepth(310);
+            
+            let label = this.add.text(400, screenY, text, { 
+                fontSize: '20px', fill: '#ffffff', fontFamily: 'Ithaca',
+                stroke: '#000000', strokeThickness: 3
+            });
+            label.setOrigin(0.5);
+            label.setScrollFactor(0);
+            label.setDepth(311);
+            
+            btn.on('pointerover', () => { btn.setTint(0xcccccc); });
+            btn.on('pointerout', () => { btn.clearTint(); });
+            btn.on('pointerdown', () => {
+                this.sound.play('click_sfx');
+                callback();
+            });
+            
+            this.pauseMenuContainer.add(btn);
+            this.pauseMenuContainer.add(label);
+        };
+        
+        // Add pause menu buttons using screen coordinates
+        createPauseButton(170, 'RESUME', () => {
+            this.physics.resume();
+            this.pauseMenuContainer.setVisible(false);
+            pauseBtn.setTint(0xffffff);
+        });
+        
+        createPauseButton(260, 'RESTART LEVEL', () => {
+            this.pauseMenuContainer.setVisible(false);
+            this.scene.restart();
+        });
+        
+        createPauseButton(350, 'RESTART GAME', () => {
+            this.pauseMenuContainer.setVisible(false);
+            localStorage.setItem('lastPlayedLevel', 1);
+            this.scene.start('GameLevel', { ...levels[0], isCorrectionRoom: false });
+        });
+        
+        createPauseButton(440, 'BACK TO MENU', () => {
+            this.pauseMenuContainer.setVisible(false);
+            this.scene.start('MainMenu');
+        });
+
         pauseBtn.on('pointerdown', () => {
             this.sound.play('click_sfx');
-            if (this.physics.world.isPaused) { this.physics.resume(); pauseBtn.setText('II'); } 
-            else { this.physics.pause(); pauseBtn.setText('▶'); }
+            if (this.physics.world.isPaused) { 
+                this.physics.resume(); 
+                this.pauseMenuContainer.setVisible(false);
+                pauseBtn.setTint(0xffffff); // Normal
+            } else { 
+                this.physics.pause(); 
+                this.pauseMenuContainer.setVisible(true);
+                pauseBtn.setTint(0x888888); // Dimmed
+            }
+        });
+        
+        // Allow ESC to toggle pause
+        this.input.keyboard.on('keydown-ESC', () => {
+            this.sound.play('click_sfx');
+            if (this.physics.world.isPaused) { 
+                this.physics.resume(); 
+                this.pauseMenuContainer.setVisible(false);
+                pauseBtn.setTint(0xffffff);
+            } else { 
+                this.physics.pause(); 
+                this.pauseMenuContainer.setVisible(true);
+                pauseBtn.setTint(0x888888);
+            }
         });
 
         this.dialogContainer = this.add.container(400, 50).setScrollFactor(0).setDepth(200).setVisible(false);
@@ -490,12 +648,12 @@ class GameLevel extends Phaser.Scene {
         this.dialogText = this.add.text(0, 0, '', { fontSize: '20px', fontFamily: 'Ithaca', color: '#4a3d2e', wordWrap: { width: 650 }, align: 'center' }).setOrigin(0.5);
         this.dialogContainer.add(this.dialogText);
         
-        this.interactPrompt = this.add.text(0, 0, 'Press E to talk', { fontSize: '12px', fontFamily: 'Ithaca', backgroundColor: '#000' }).setOrigin(0.5).setDepth(101).setVisible(false);
+        this.interactPrompt = this.add.text(0, 0, 'Press E to talk', { fontSize: '20px', fontFamily: 'Ithaca', backgroundColor: '#000' }).setOrigin(0.5).setDepth(101).setVisible(false);
         
         let levelTitle = this.isCorrectionRoom ? "CORRECTION ROOM" : `Level ${this.currentLevelData.level}`;
         const qContainer = this.add.container(400, 40).setScrollFactor(0).setDepth(100);
         qContainer.add(this.add.nineslice(0, 0, 'dialog_bg', 0, 500, 60, 10, 10, 10, 10));
-        qContainer.add(this.add.text(0, 0, `${levelTitle}: ${this.currentLevelData.question}`, { fontSize: '18px', fontFamily: 'Ithaca', fill: '#4a3d2e', wordWrap: { width: 480 }, align: 'center' }).setOrigin(0.5));
+        qContainer.add(this.add.text(0, 0, `${levelTitle}: ${this.currentLevelData.question}`, { fontSize: '28px', fontFamily: 'Ithaca', fill: '#4a3d2e', wordWrap: { width: 480 }, align: 'center' }).setOrigin(0.5));
     }
 
     update(time, delta) {
@@ -528,12 +686,12 @@ class GameLevel extends Phaser.Scene {
         // --- FOOTSTEPS SOUND ---
         if (moving) {
             this.footstepTimer += delta;
-            if (this.footstepTimer > 350) { // Every 350ms
+            if (this.footstepTimer > 350) { 
                 this.sound.play('footstep_sfx', { volume: 0.3 });
                 this.footstepTimer = 0;
             }
         } else {
-            this.footstepTimer = 350; // Reset so sound plays immediately next move
+            this.footstepTimer = 350; 
         }
 
         this.blocks.getChildren().forEach((block) => {
@@ -553,7 +711,7 @@ class GameLevel extends Phaser.Scene {
                             block.isLocked = true;
                             block.body.enable = false; 
                             
-                            this.sound.play('snap_sfx'); // PLAY SNAP SOUND
+                            this.sound.play('snap_sfx'); 
 
                             if (plate.texture.key === 'floor_items') {
                                 plate.setFrame(31); 
@@ -581,10 +739,17 @@ class GameLevel extends Phaser.Scene {
         if (this.npc && !this.isCorrectionRoom && this.currentLevelData.level === 1) {
             const dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.npc.x, this.npc.y);
             if (dist < 80) {
+                // FIX: NPC TURNS TO FACE PLAYER
+                if (this.player.x < this.npc.x) {
+                    this.npc.setFlipX(true); // Player is on left, NPC faces left
+                } else {
+                    this.npc.setFlipX(false); // Player is on right, NPC faces right
+                }
+
                 this.interactPrompt.setPosition(this.npc.x, this.npc.y - 50).setVisible(true);
                 if (this.npcMarker) this.npcMarker.setVisible(false);
                 if (Phaser.Input.Keyboard.JustDown(this.keyE)) {
-                    this.showDialogue("PROF. PRIME:\n----------------\nHurry! Use Arrow Keys to move.\nPush the correct Answer Block into the Yellow Zone!");
+                    this.showDialogue("PROF. PRIME:\n----------------\nHurry! Use Arrow Keys to move.\nPush the correct Answer Gem into the Platform!");
                 }
             } else {
                 this.interactPrompt.setVisible(false);
@@ -617,12 +782,7 @@ class GameLevel extends Phaser.Scene {
 
     activatePortal() {
         if (this.portal.visible) return;
-        // REMOVE THIS LOCK: this.isLevelComplete = true; 
         
-        // REMOVE THESE STOPS:
-        // this.player.body.setVelocity(0);
-        // this.player.anims.play('idle-down');
-
         this.portal.setVisible(true); 
         this.portal.body.enable = true; 
         this.portal.play('portal-spin');
@@ -639,14 +799,12 @@ class GameLevel extends Phaser.Scene {
 
     handleWin() {
         this.isGameFinished = true;
-        
-        // NOW WE LOCK THE GAME
         this.isLevelComplete = true;
         
         this.physics.pause();
         this.player.anims.stop();
         this.player.body.setVelocity(0); 
-        this.sound.stopAll();
+        // --- MUSIC FIX: Removed stopAll() ---
         this.sound.play('victory_sfx');
         
         let msg = this.isCorrectionRoom ? "DETENTION PASSED!" : `LEVEL ${this.currentLevelData.level}\nCOMPLETE!`;
@@ -659,6 +817,8 @@ class GameLevel extends Phaser.Scene {
             this.cameras.main.fade(500, 0, 0, 0);
             this.time.delayedCall(600, () => {
                 if (this.isCorrectionRoom) {
+                    localStorage.setItem('isInDetention', 'false');
+                    localStorage.removeItem('detentionReturnLevel');
                     const levelToRetry = levels.find(l => l.level === this.returnToLevelNum);
                     if (levelToRetry) {
                         this.scene.start('GameLevel', { ...levelToRetry, isCorrectionRoom: false });
@@ -692,18 +852,25 @@ class GameLevel extends Phaser.Scene {
         this.isGameFinished = true;
         this.physics.pause();
         this.player.anims.stop();
-        this.sound.stopAll();
+        // --- MUSIC FIX: Removed stopAll() ---
         this.sound.play('gameover_sfx');
 
         if (this.isCorrectionRoom) {
             this.add.text(400, 300, 'EXPELLED!\n(GAME OVER)', { fontSize: '64px', fill: '#f00', backgroundColor: '#000', fontFamily: 'Ithaca', align: 'center' }).setOrigin(0.5).setScrollFactor(0).setDepth(300);
-            this.time.delayedCall(3000, () => { this.scene.start('MainMenu'); });
+            this.time.delayedCall(3000, () => { 
+                localStorage.setItem('lastPlayedLevel', 1);
+                localStorage.setItem('isInDetention', 'false');
+                localStorage.removeItem('detentionReturnLevel');
+                this.scene.start('MainMenu'); 
+            });
         } else {
             this.add.text(400, 300, 'WRONG ANSWER!\nTO DETENTION!', { fontSize: '48px', fill: '#ff6600', backgroundColor: '#000', fontFamily: 'Ithaca', align: 'center' }).setOrigin(0.5).setScrollFactor(0).setDepth(300);
             const myLevelNum = this.currentLevelData.level;
             this.time.delayedCall(2000, () => {
                 this.cameras.main.fade(500, 0, 0, 0);
                 this.time.delayedCall(600, () => {
+                    localStorage.setItem('isInDetention', 'true');
+                    localStorage.setItem('detentionReturnLevel', myLevelNum);
                     const randomEasyQuestion = correctionLevels[Math.floor(Math.random() * correctionLevels.length)];
                     this.scene.start('GameLevel', { 
                         ...randomEasyQuestion, 
@@ -720,7 +887,6 @@ class GameLevel extends Phaser.Scene {
         if (this.dialogContainer.y > 0) return;
         this.dialogContainer.setVisible(true);
         
-        // Loop Talking SFX
         if (!this.talkSound || !this.talkSound.isPlaying) {
             this.talkSound = this.sound.add('talking_sfx', { volume: 0.5, loop: true });
             this.talkSound.play();
@@ -737,7 +903,7 @@ class GameLevel extends Phaser.Scene {
                 this.dialogText.text += fullText[i]; 
                 i++;
                 if (i >= fullText.length) {
-                    if (this.talkSound) this.talkSound.stop(); // Stop sound when typing done
+                    if (this.talkSound) this.talkSound.stop(); 
                 }
             }, 
             repeat: fullText.length - 1 
@@ -756,15 +922,15 @@ class GameWon extends Phaser.Scene {
     constructor() { super('GameWon'); }
 
     create() {
-        this.sound.stopAll();
-        this.sound.play('victory_sfx'); // Victory fanfare
+        // --- MUSIC FIX: Removed stopAll() ---
+        // Lab music will continue, and Victory SFX will play on top.
+        this.sound.play('victory_sfx'); 
 
         this.add.text(400, 200, 'CONGRATULATIONS!', { fontSize: '48px', fill: '#ffff00', fontFamily: 'Ithaca' }).setOrigin(0.5);
         this.add.text(400, 280, 'YOU HAVE MASTERED THE LABYRINTH!', { fontSize: '32px', fill: '#00ff00', fontFamily: 'Ithaca' }).setOrigin(0.5);
-        this.add.text(400, 380, 'All 20 Levels Complete!', { fontSize: '24px', fill: '#ffffff', fontFamily: 'Ithaca' }).setOrigin(0.5);
+        this.add.text(400, 380, 'All Demo Levels Complete!', { fontSize: '24px', fill: '#ffffff', fontFamily: 'Ithaca' }).setOrigin(0.5);
         
-        let returnBtn = this.add.text(400, 480, 'RETURN TO MENU', { fontSize: '20px', fill: '#0ff', fontFamily: 'Ithaca' })
-            .setOrigin(0.5).setInteractive();
+        let returnBtn = this.add.text(400, 480, 'RETURN TO MENU', { fontSize: '20px', fill: '#0ff', fontFamily: 'Ithaca' }).setOrigin(0.5).setInteractive();
 
         returnBtn.on('pointerdown', () => {
             this.scene.start('MainMenu');
@@ -779,7 +945,7 @@ const config = {
     backgroundColor: '#222222',
     pixelArt: true,
     roundPixels: true,
-    physics: { default: 'arcade', arcade: { debug: true } }, 
+    physics: { default: 'arcade', arcade: { debug: false } }, 
     scene: [MainMenu, GameLevel, GameWon] 
 };
 
