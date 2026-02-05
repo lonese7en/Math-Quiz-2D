@@ -1,0 +1,329 @@
+{ "compressionlevel":-1,
+ "height":15,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[4228, 4259, 4258, 4228, 4227, 4258, 4227, 4260, 4228, 4258, 4260, 4258, 4228, 4259, 4260, 4228, 4226, 4259, 4228, 4260,
+            4226, 4228, 4260, 4226, 4259, 4228, 4260, 4228, 4226, 4226, 4260, 4258, 4227, 4226, 4227, 4258, 4258, 4259, 4258, 4258,
+            4228, 4228, 4226, 4226, 4258, 4228, 4258, 4227, 4258, 4226, 4226, 4226, 4226, 4227, 4259, 4260, 4260, 4228, 4226, 4228,
+            4258, 4227, 4260, 4259, 4260, 4260, 4228, 4260, 4259, 4226, 4258, 4226, 4226, 4259, 4226, 4228, 4226, 4258, 4228, 4259,
+            4226, 4226, 4226, 4226, 4260, 4228, 4226, 4260, 4259, 4226, 4260, 4260, 4228, 4259, 4259, 4228, 4260, 4228, 4259, 4260,
+            4259, 4226, 4260, 4227, 4227, 4260, 4260, 4226, 4260, 4227, 4226, 4228, 4258, 4227, 4258, 4228, 4260, 4228, 4227, 4259,
+            4259, 4260, 0, 0, 0, 0, 0, 4227, 4259, 4227, 4227, 4227, 4259, 4259, 4227, 4259, 4227, 4227, 4227, 4227,
+            0, 0, 0, 0, 0, 0, 0, 0, 1932, 1932, 1932, 1932, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 1998, 0, 0, 0, 1932, 1932, 1932, 1932, 0, 0, 0, 0, 1998, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 1932, 1932, 1932, 1932, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 1932, 1932, 1932, 1932, 1932, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 1932, 1932, 1932, 1932, 1932, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 1932, 1932, 1932, 1932, 1932, 1932, 1932, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 1932, 1932, 1932, 1932, 1932, 1932, 1932, 1932, 1932, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 1932, 1932, 1932, 1932, 1932, 1932, 1932, 1932, 1932, 1932, 1932, 0, 0, 0, 0, 0],
+         "height":15,
+         "id":30,
+         "name":"Ground",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":20,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 4258, 4258, 4228, 4258, 4228, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            4132, 4132, 4132, 4132, 4295, 4132, 4132, 4132, 0, 0, 0, 0, 4132, 4132, 4132, 4132, 4295, 4132, 4132, 4132,
+            1998, 1998, 1998, 1998, 4326, 1998, 1998, 1998, 0, 0, 0, 0, 1998, 1998, 1998, 1998, 4326, 1998, 1998, 1998,
+            1998, 1998, 1998, 1998, 1998, 1998, 1998, 2684356555, 0, 0, 0, 0, 1998, 1998, 1998, 1998, 1998, 1998, 1998, 1998,
+            1998, 1998, 1998, 1998, 1998, 1998, 1930, 0, 0, 0, 0, 0, 1998, 1998, 1998, 1998, 1998, 1998, 1998, 1998,
+            1998, 1998, 1998, 1998, 1998, 1998, 2684356555, 0, 0, 0, 0, 0, 3221227467, 1998, 1998, 1998, 1998, 1998, 1998, 1998,
+            1998, 1998, 1998, 1998, 1998, 2684356555, 0, 0, 0, 0, 0, 0, 0, 3221227467, 1998, 1998, 1998, 1998, 1998, 1998,
+            1998, 1998, 1998, 1998, 2684356555, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3221227467, 1998, 1998, 1998, 1998, 1998,
+            1998, 1998, 1998, 2684356555, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3221227467, 1998, 1998, 1998, 1998],
+         "height":15,
+         "id":31,
+         "name":"Walls",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":20,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":21,
+         "name":"MovingCart",
+         "objects":[
+                {
+                 "gid":5124,
+                 "height":18,
+                 "id":2,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"moveX",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"moveY",
+                         "type":"int",
+                         "value":250
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":14,
+                 "x":-27,
+                 "y":16.6666666666667
+                }, 
+                {
+                 "gid":5124,
+                 "height":18,
+                 "id":3,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"moveX",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"moveY",
+                         "type":"int",
+                         "value":-250
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":14,
+                 "x":345,
+                 "y":34.1666666666667
+                }, 
+                {
+                 "gid":5124,
+                 "height":18,
+                 "id":5,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"moveX",
+                         "type":"int",
+                         "value":600
+                        }, 
+                        {
+                         "name":"moveY",
+                         "type":"int",
+                         "value":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":14,
+                 "x":3.33333333333333,
+                 "y":-17.5
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"moveX",
+                 "type":"int",
+                 "value":600
+                }, 
+                {
+                 "name":"moveY",
+                 "type":"int",
+                 "value":0
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":29,
+         "name":"CliffEdges",
+         "objects":[
+                {
+                 "height":12.6666666666667,
+                 "id":4,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"landX",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"landY",
+                         "type":"int",
+                         "value":100
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":62.6666666666667,
+                 "x":278,
+                 "y":-11.6666666666667
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":32,
+         "name":"Arrow",
+         "objects":[
+                {
+                 "gid":5125,
+                 "height":31,
+                 "id":6,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"moveX",
+                         "type":"int",
+                         "value":600
+                        }, 
+                        {
+                         "name":"moveY",
+                         "type":"int",
+                         "value":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":-14.6666666666667,
+                 "y":181.333333333333
+                }, 
+                {
+                 "gid":5125,
+                 "height":31,
+                 "id":7,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"moveX",
+                         "type":"int",
+                         "value":400
+                        }, 
+                        {
+                         "name":"moveY",
+                         "type":"int",
+                         "value":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":-13,
+                 "y":81.5
+                }, 
+                {
+                 "gid":5125,
+                 "height":31,
+                 "id":8,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"moveX",
+                         "type":"int",
+                         "value":600
+                        }, 
+                        {
+                         "name":"moveY",
+                         "type":"int",
+                         "value":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":-11,
+                 "y":235
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":33,
+ "nextobjectid":9,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tiledversion":"1.11.2",
+ "tileheight":16,
+ "tilesets":[
+        {
+         "columns":64,
+         "firstgid":1,
+         "image":"..\/..\/..\/Downloads\/RPG assets\/Sunnyside_World_ASSET_PACK_V2.1\/Sunnyside_World_Assets\/Tileset\/spr_tileset_sunnysideworld_16px.png",
+         "imageheight":1024,
+         "imagewidth":1024,
+         "margin":0,
+         "name":"sunny_world",
+         "spacing":0,
+         "tilecount":4096,
+         "tileheight":16,
+         "tilewidth":16
+        }, 
+        {
+         "columns":32,
+         "firstgid":4097,
+         "image":"..\/..\/..\/Downloads\/0x72_DungeonTilesetII_v1.7\/0x72_DungeonTilesetII_v1.7\/0x72_DungeonTilesetII_v1.7.png",
+         "imageheight":512,
+         "imagewidth":512,
+         "margin":0,
+         "name":"dungeon_tiles",
+         "spacing":0,
+         "tilecount":1024,
+         "tileheight":16,
+         "tilewidth":16
+        }, 
+        {
+         "firstgid":5121,
+         "source":"big_platform.tsx"
+        }, 
+        {
+         "columns":0,
+         "firstgid":5124,
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
+         "margin":0,
+         "name":"MovingCart",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":18,
+         "tiles":[
+                {
+                 "id":0,
+                 "image":"MovingCart.png",
+                 "imageheight":18,
+                 "imagewidth":14
+                }],
+         "tilewidth":14
+        }, 
+        {
+         "firstgid":5125,
+         "source":"arrow.tsx"
+        }],
+ "tilewidth":16,
+ "type":"map",
+ "version":"1.10",
+ "width":20
+}

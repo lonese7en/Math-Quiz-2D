@@ -49,7 +49,7 @@ const correctionLevels = [
 
 // --- 3. MAIN GAME LEVELS ---
 const levels = [
-    // --- AREA 1 (Blue Gem) ---
+    // --- AREA 1: THE FOREST (Limits & Basic Power Rule) ---
     { 
         level: 1,
         question: "Evaluate limit: lim(x->2) of (x + 3)", 
@@ -98,15 +98,15 @@ const levels = [
         level: 5,
         question: "Find derivative: y = 3x^4", 
         answer: "12x^3", 
-        options: ["12x^3", "3x^4", "12x"],
+        options: ["12x^3", "3x^4", "12x", "4x^3"], // Added distraction
         playerStart: { x: 620, y: 1620 },
         blockStart: { x: 200, y: 250 },
-        blockPositions: [{ x: 670, y: 1030 }, { x: 115, y: 790 }, { x: 798, y: 751 }],
+        blockPositions: [{ x: 670, y: 1030 }, { x: 115, y: 790 }, { x: 798, y: 751 }, { x: 500, y: 900 }],
         answerZone: { x: 264, y: 695 },
         portalPos: { x: 621, y: 286 },
         gatePos: { x: 578, y: 480 } 
     },
-    // --- AREA 2: THE RIVER (Green Gem) ---
+    // --- AREA 2: THE RIVER (Exponential & Logarithmic Rules) ---
     { 
         level: 6,
         question: "True or False: Derivative of e^x is e^x", 
@@ -118,19 +118,156 @@ const levels = [
         answerZone: { x: 880, y: 358 },
         portalPos: { x: 259, y: 167 }
     },
-    // --- AREA 3: THE CAVE (Yellow Gem) ---
+    { 
+        level: 7,
+        question: "Find derivative: y = ln(x)", 
+        answer: "1/x", 
+        options: ["1/x", "ln(x)", "e^x", "x"], // Added distraction
+        playerStart: { x: 400, y: 500 },
+        blockStart: { x: 200, y: 250 },
+        blockPositions: [{ x: 200, y: 200 }, { x: 300, y: 300 }, { x: 400, y: 200 }, { x: 500, y: 300 }], 
+        answerZone: { x: 880, y: 358 },
+        portalPos: { x: 259, y: 167 }
+    },
+    { 
+        level: 8,
+        question: "Find derivative: y = e^(2x)", 
+        answer: "2e^(2x)", 
+        options: ["2e^(2x)", "e^(2x)", "2x", "e^x"], 
+        playerStart: { x: 400, y: 500 },
+        blockStart: { x: 200, y: 250 },
+        blockPositions: [{ x: 200, y: 200 }, { x: 300, y: 300 }, { x: 400, y: 200 }, { x: 500, y: 300 }],
+        answerZone: { x: 880, y: 358 },
+        portalPos: { x: 259, y: 167 }
+    },
+    { 
+        level: 9,
+        question: "Find derivative: y = ln(4x)", 
+        answer: "1/x", 
+        options: ["1/x", "4/x", "4", "ln(4)"], 
+        playerStart: { x: 400, y: 500 },
+        blockStart: { x: 200, y: 250 },
+        blockPositions: [{ x: 200, y: 200 }, { x: 300, y: 300 }, { x: 400, y: 200 }, { x: 500, y: 300 }],
+        answerZone: { x: 880, y: 358 },
+        portalPos: { x: 259, y: 167 }
+    },
+    { 
+        level: 10,
+        question: "Find derivative: y = 3^x", 
+        answer: "3^x ln(3)", 
+        options: ["3^x ln(3)", "3^x", "x3^(x-1)", "ln(3)"], 
+        playerStart: { x: 400, y: 500 },
+        blockStart: { x: 200, y: 250 },
+        blockPositions: [{ x: 200, y: 200 }, { x: 300, y: 300 }, { x: 400, y: 200 }, { x: 500, y: 300 }],
+        answerZone: { x: 880, y: 358 },
+        portalPos: { x: 259, y: 167 }
+    },
+    { 
+        level: 11,
+        question: "Find derivative: y = 3e^(2x) - 5ln(x)", 
+        answer: "6e^(2x)-5/x", 
+        options: ["6e^(2x)-5/x", "3e^(2x)-5/x", "6e^(2x)-5", "e^(2x)"], 
+        playerStart: { x: 400, y: 500 },
+        blockStart: { x: 200, y: 250 },
+        blockPositions: [{ x: 200, y: 200 }, { x: 300, y: 300 }, { x: 400, y: 200 }, { x: 500, y: 300 }],
+        answerZone: { x: 880, y: 358 },
+        gatePos: { x: 578, y: 480 },
+        portalPos: { x: 259, y: 167 }
+    },
+    // --- AREA 3: THE CAVE (Chain Rule & Advanced Log Rules) ---
     { 
         level: 12,
-        question: "Find derivative: y = 7x", 
-        answer: 7, 
-        options: [7, "7x", 0],
+        question: "Derivative of y = ln(2x+1)", 
+        answer: "2/(2x+1)", 
+        options: ["2/(2x+1)", "1/(2x+1)", "2"],
         playerStart: { x: 463, y: 410 },
         blockStart: { x: 250, y: 100 },
         blockPositions: [{ x: 349, y: 568 }, { x: 420, y: 568 }, { x: 480, y: 568 }],
         answerZone: { x: 851, y: 437 },
         portalPos: { x: 500, y: 309 }
     },
-    // --- AREA 4: THE LABORATORY (Orb) ---
+    { 
+        level: 13,
+        question: "Derivative of y = log10(x)", 
+        answer: "1/(x ln10)", 
+        options: ["1/(x ln10)", "1/x", "ln10"],
+        playerStart: { x: 463, y: 410 },
+        blockStart: { x: 250, y: 100 },
+        blockPositions: [{ x: 349, y: 568 }, { x: 420, y: 568 }, { x: 480, y: 568 }],
+        answerZone: { x: 851, y: 437 },
+        portalPos: { x: 500, y: 309 }
+    },
+    { 
+        level: 14,
+        question: "Derivative of y = log5(x)", 
+        answer: "1/(x ln5)", 
+        options: ["1/(x ln5)", "1/5x", "5/x"],
+        playerStart: { x: 463, y: 410 },
+        blockStart: { x: 250, y: 100 },
+        blockPositions: [{ x: 349, y: 568 }, { x: 420, y: 568 }, { x: 480, y: 568 }],
+        answerZone: { x: 851, y: 437 },
+        portalPos: { x: 500, y: 309 }
+    },
+    { 
+        level: 15,
+        question: "Derivative of y = e^(x^2)", 
+        answer: "2xe^(x^2)", 
+        options: ["2xe^(x^2)", "e^(x^2)", "2x"],
+        playerStart: { x: 463, y: 410 },
+        blockStart: { x: 250, y: 100 },
+        blockPositions: [{ x: 349, y: 568 }, { x: 420, y: 568 }, { x: 480, y: 568 }],
+        answerZone: { x: 851, y: 437 },
+        portalPos: { x: 500, y: 309 }
+    },
+    { 
+        level: 16,
+        question: "Derivative of y = 2^(3x)", 
+        answer: "3(2^3x)ln2", 
+        options: ["3(2^3x)ln2", "2^(3x)ln2", "6^x"],
+        playerStart: { x: 463, y: 410 },
+        blockStart: { x: 250, y: 100 },
+        blockPositions: [{ x: 606, y: 66 }, { x: 420, y: 568 }, { x: 480, y: 568 }],
+        answerZone: { x: 851, y: 437 },
+        portalPos: { x: 500, y: 309 }
+    },
+    { 
+        level: 17,
+        question: "Derivative of y = log2(x)", 
+        answer: "1/(x ln2)", 
+        options: ["1/(x ln2)", "1/2x", "2/x"],
+        playerStart: { x: 463, y: 410 },
+        blockStart: { x: 250, y: 100 },
+        blockPositions: [{ x: 606, y: 66 }, { x: 420, y: 568 }, { x: 480, y: 568 }],
+        answerZone: { x: 851, y: 437 },
+        portalPos: { x: 500, y: 309 }
+    },
+    { 
+        level: 18,
+        question: "Find y' if y = ln(4x^2) at x=3", 
+        answer: "2/3", 
+        options: ["2/3", "1/3", "1/4", "3/2"], 
+        playerStart: { x: 463, y: 900 },
+        blockStart: { x: 250, y: 100 },
+        blockPositions: [{ x: 480, y: 900 }, { x: 420, y: 568 }, { x: 480, y: 962 }, { x: 350, y: 800 }],
+        answerZone: { x: 630, y: 912 },
+        portalPos: { x: 600, y: 102 },
+        gatePos: { x: 452, y: 550 }
+    },
+    // --- AREA 4: THE LABORATORY (Applications & Multi-Answer Assembly) ---
+    { 
+        level: 19,
+        question: "Find rate of change: y = 500e^(0.04t)", 
+        answer: "20e^(0.04t)", 
+        options: ["20e^(0.04t)", "500e", "0.04t", "20", "e", "t"], // Distractions
+        playerStart: { x: 400, y: 500 },
+        blockStart: { x: 100, y: 100 },
+        blockPositions: [
+            { x: 200, y: 200 }, { x: 400, y: 200 }, { x: 600, y: 200 },
+            { x: 200, y: 350 }, { x: 400, y: 350 }, { x: 600, y: 350 }
+        ],
+        answerZone: { x: 860, y: 379 }, 
+        portalPos: { x: 860, y: 379 }
+    },
     { 
         level: 20,
         question: "Bacteria N(t)=500e^(0.04t). Rate at t=10? (Assemble: 29.8)", 
@@ -141,13 +278,114 @@ const levels = [
             { x: 502, y: 146, requiredValue: "9" },
             { x: 547, y: 146, requiredValue: ".8" }
         ],
-        options: ["2", "9", ".8", "5", "0", "1"], 
+        options: ["2", "9", ".8", "5", "0", "1", "3", "7", "4", "6", "8", "."], // HEAVY Distractions
         playerStart: { x: 400, y: 500 },
         blockStart: { x: 100, y: 100 },
         blockPositions: [
-            { x: 200, y: 200 }, { x: 300, y: 200 }, { x: 400, y: 200 },
-            { x: 200, y: 350 }, { x: 300, y: 350 }, { x: 400, y: 350 }
+            { x: 150, y: 200 }, { x: 250, y: 200 }, { x: 350, y: 200 }, { x: 450, y: 200 },
+            { x: 150, y: 300 }, { x: 250, y: 300 }, { x: 350, y: 300 }, { x: 450, y: 300 },
+            { x: 150, y: 400 }, { x: 250, y: 400 }, { x: 350, y: 400 }, { x: 450, y: 400 }
         ],
+        answerZone: { x: 0, y: 0 }, 
+        portalPos: { x: 860, y: 379 }
+    },
+    { 
+        level: 21,
+        question: "Richter R(x)=ln(x). Rate at x=5? (Assemble: 0.2)", 
+        answer: "0.2", 
+        multiAnswer: true,
+        slots: [
+            { x: 455, y: 146, requiredValue: "0" },
+            { x: 502, y: 146, requiredValue: "." },
+            { x: 547, y: 146, requiredValue: "2" }
+        ],
+        options: ["0", ".", "2", "5", "1", "9", "8", "3", "4", "7"], // Distractions
+        playerStart: { x: 400, y: 500 },
+        blockStart: { x: 100, y: 100 },
+        blockPositions: [
+            { x: 200, y: 200 }, { x: 300, y: 200 }, { x: 400, y: 200 }, { x: 500, y: 200 },
+            { x: 200, y: 350 }, { x: 300, y: 350 }, { x: 400, y: 350 }, { x: 500, y: 350 },
+            { x: 200, y: 500 }, { x: 300, y: 500 }
+        ],
+        answerZone: { x: 0, y: 0 }, 
+        portalPos: { x: 860, y: 379 }
+    },
+    { 
+        level: 22,
+        question: "Lamp B(t)=log(3t^3). Rate at t=2? (Assemble: 1.5)", 
+        answer: "1.5", 
+        multiAnswer: true,
+        slots: [
+            { x: 455, y: 146, requiredValue: "1" },
+            { x: 502, y: 146, requiredValue: "." },
+            { x: 547, y: 146, requiredValue: "5" }
+        ],
+        options: ["1", ".", "5", "0", "2", "3", "7", "8", "9", "4"], // Distractions
+        playerStart: { x: 400, y: 500 },
+        blockStart: { x: 100, y: 100 },
+        blockPositions: [
+            { x: 150, y: 200 }, { x: 250, y: 200 }, { x: 350, y: 200 }, { x: 450, y: 200 },
+            { x: 150, y: 350 }, { x: 250, y: 350 }, { x: 350, y: 350 }, { x: 450, y: 350 },
+            { x: 150, y: 500 }, { x: 250, y: 500 }
+        ],
+        answerZone: { x: 0, y: 0 }, 
+        portalPos: { x: 860, y: 379 }
+    },
+    { 
+        level: 23,
+        question: "Acidity A(x)=log(7x^5). Rate at x=1?", 
+        answer: "5", 
+        multiAnswer: false, // Simple answer
+        options: ["5", "7", "1", "3", "0", "9", "2", "8"], // Distractions
+        playerStart: { x: 400, y: 500 },
+        blockStart: { x: 100, y: 100 },
+        blockPositions: [
+            { x: 200, y: 200 }, { x: 300, y: 200 }, { x: 400, y: 200 }, { x: 500, y: 200 },
+            { x: 200, y: 350 }, { x: 300, y: 350 }, { x: 400, y: 350 }, { x: 500, y: 350 }
+        ],
+        answerZone: { x: 860, y: 379 }, 
+        portalPos: { x: 860, y: 379 }
+    },
+    { 
+        level: 24,
+        question: "Pressure P(t)=log(2t^4). Rate at t=3?", 
+        answer: "4/3", 
+        multiAnswer: false,
+        options: ["4/3", "3/4", "2", "1/2", "3", "4", "1", "0"], // Distractions
+        playerStart: { x: 400, y: 500 },
+        blockStart: { x: 100, y: 100 },
+        blockPositions: [
+            { x: 200, y: 200 }, { x: 300, y: 200 }, { x: 400, y: 200 }, { x: 500, y: 200 },
+            { x: 200, y: 350 }, { x: 300, y: 350 }, { x: 400, y: 350 }, { x: 500, y: 350 }
+        ],
+        answerZone: { x: 860, y: 379 }, 
+        portalPos: { x: 860, y: 379 }
+    },
+    { 
+        level: 25,
+        question: "Pos s(t)=t^2. Find velocity v(t).", 
+        answer: "2t", 
+        multiAnswer: false,
+        options: ["2t", "t", "t^2", "2", "t/2", "2t^2", "1", "0"], // Distractions
+        playerStart: { x: 438, y: 2237 },
+        blockStart: { x: 100, y: 100 },
+        blockPositions: [
+            { x: 1060, y: 2040 }, { x: 1060, y: 2086 }, { x: 1060, y: 2130 },
+            { x: 1060, y: 2200 }, { x: 1060, y: 2237 }, { x: 1060, y: 2300 },
+            { x: 1150, y: 2100 }, { x: 1150, y: 2200 }
+        ],
+        answerZone: { x: 1315, y: 2040 }, // Using a zone near the gate
+        portalPos: { x: 860, y: 379 } // Placeholder, cutscene handles exit
+    },
+    { 
+        level: 26,
+        question: "Integration: Area under y=x from 0 to 4", 
+        answer: "8", 
+        multiAnswer: false, // It's a single block answer
+        options: [8, 4, 16], // Options from PDF
+        playerStart: { x: 843, y: 590 }, 
+        blockStart: { x: 100, y: 100 },
+        blockPositions: [],
         answerZone: { x: 0, y: 0 }, 
         portalPos: { x: 860, y: 379 }
     }
@@ -167,15 +405,26 @@ class MainMenu extends Phaser.Scene {
         this.load.image('btn_long', 'assets/btn-long.png');
         this.load.image('btn_pause', 'assets/btn_pause.png');
         this.load.image('btn_restart', 'assets/btn_restart.png');
+        this.load.spritesheet('fireball', 'assets/spriteSheet_fireEffect03_21x26.png', { 
+    frameWidth: 21, 
+    frameHeight: 26 
+});
     }
 
     create() {
+        this.sound.getAll().forEach(sound => {
+        // If the sound key DOES NOT contain 'bgm', destroy it.
+        if (!sound.key.includes('bgm')) {
+            sound.stop();
+            sound.destroy();
+        }
+    });
         this.input.setDefaultCursor('url(assets/cursor.png), pointer');
         this.input.on('pointerup', () => { this.input.setDefaultCursor('url(assets/cursor.png), pointer'); });
 
         this.scrollingBg = this.add.tileSprite(400, 300, 800, 600, 'menu_bg');
         this.scrollingBg.setTileScale(0.5); 
-        this.add.image(400, 150, 'title_img').setScale(0.6);
+        this.add.image(400, 150, 'title_img').setScale(0.15);
 
         this.sound.stopAll();
         if (!this.sound.get('title_music')) {
@@ -355,9 +604,15 @@ class GameLevel extends Phaser.Scene {
         this.isMultiSlot = data.multiAnswer || false;
         this.footstepTimer = 0;
         this.currentBGMKey = null; 
+        this.isBossRetry = data.isBossRetry || false;
+        this.cutscenePlayed = false;      // Reset the Gate Cutscene flag
+    this.evilRevealPlayed = false;    // Reset the Evil Reveal flag
+    this.isCutscenePlaying = false;   // Ensure controls are unlocked
     }
 
     preload() {
+        this.load.image('scifi_gate_closed', 'assets/scifi_gate_closed.png');
+        this.load.image('scifi_gate_open', 'assets/scifi_gate_open.png');
         this.load.spritesheet('floor_items', 'assets/atlas_floor-16x16.png', { frameWidth: 16, frameHeight: 16 });
         this.load.image('sunny_tiles_extruded', 'assets/sunny_tiles_extruded.png');
         this.load.spritesheet('portal', 'assets/Dimensional_Portal.png', { frameWidth: 32, frameHeight: 32 });
@@ -367,6 +622,11 @@ class GameLevel extends Phaser.Scene {
         this.load.spritesheet('hero_sheet', 'assets/player.png', { frameWidth: 48, frameHeight: 48 });
         this.load.image('wall', 'assets/wall.png');
         this.load.spritesheet('professor', 'assets/doctor.png', { frameWidth: 16, frameHeight: 32 });
+        // CHANGE frameWidth from 16 to 32
+this.load.spritesheet('professor_new', 'assets/professor_new.png', { 
+    frameWidth: 16, 
+    frameHeight: 32 
+});
         this.load.spritesheet('sunny_tiles_png', 'assets/spr_tileset_sunnysideworld_16px.png', { frameWidth: 16, frameHeight: 16, margin: 1, spacing: 2 });
         this.load.spritesheet('gem_blue', 'assets/spr_coin_azu.png', { frameWidth: 16, frameHeight: 16 });
         this.load.spritesheet('gem_green', 'assets/spr_coin_strip4.png', { frameWidth: 16, frameHeight: 16 });
@@ -378,6 +638,7 @@ class GameLevel extends Phaser.Scene {
         this.load.image('dungeon_tiles', 'assets/0x72_DungeonTilesetII_v1.7.png');
         this.load.image('dungeon_walls', 'assets/atlas_walls_low-16x16.png');
         this.load.image('laboratory_tiles', 'assets/tilesFloor.png');
+        this.load.image('laboratory_stuff', 'assets/tilesStuff.png');
         this.load.image('laboratory_walls', 'assets/tilesWalls.png');
         this.load.audio('game_bgm', 'assets/game_bgm.mp3');
         this.load.audio('river_bgm', 'assets/river.mp3');
@@ -390,8 +651,19 @@ class GameLevel extends Phaser.Scene {
         this.load.audio('snap_sfx', 'assets/Retro10.wav'); 
         this.load.audio('victory_sfx', 'assets/victory.mp3');
         this.load.audio('gameover_sfx', 'assets/game-over.mp3');
+        this.load.image('MovingCart', 'assets/MovingCart.png');
+        this.load.image('arrow', 'assets/arrow.png');
+        this.load.image('vignette', 'assets/vignette.png');
+        this.load.audio('boss_bgm', 'assets/boss_music.mp3');
+        this.load.audio('laser_loop', 'assets/laser_hum.mp3'); // A static electric hum
+this.load.audio('cart_loop', 'assets/cart_rumble.mp3'); // A mechanical rolling sound
+this.load.audio('fire_loop', 'assets/fire_burning.mp3'); // A crackling fire sound
+        this.load.spritesheet('laser', 'assets/lasers_spritesheet.png', { 
+    frameWidth: 32, 
+    frameHeight: 32 
+});
 
-        for (let i of [1, 2, 3, 4, 5, 6, 12, 20]) {
+        for (let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]) {
              this.load.tilemapTiledJSON(`level${i}`, `assets/level${i}.json`);
         }
         this.load.tilemapTiledJSON('correction_room', 'assets/correction_room.json');
@@ -411,14 +683,20 @@ class GameLevel extends Phaser.Scene {
         let targetMusicKey = 'game_bgm'; 
 
         if (this.isCorrectionRoom) {
-            targetMusicKey = 'correction_bgm';
-        } else if (currentLvl >= 19) {
-            targetMusicKey = 'lab_bgm';
-        } else if (currentLvl >= 12) {
-            targetMusicKey = 'cave_bgm';
-        } else if (currentLvl >= 6) {
-            targetMusicKey = 'river_bgm';
-        }
+    targetMusicKey = 'correction_bgm';
+} 
+// --- ADD THIS CHECK FOR LEVEL 26 ---
+else if (currentLvl === 26) {
+    targetMusicKey = 'boss_bgm';
+} 
+// -----------------------------------
+else if (currentLvl >= 19) {
+    targetMusicKey = 'lab_bgm';
+} else if (currentLvl >= 12) {
+    targetMusicKey = 'cave_bgm';
+} else if (currentLvl >= 6) {
+    targetMusicKey = 'river_bgm';
+}
 
         let playingBGM = this.sound.getAll().find(s => s.isPlaying && s.key.includes('bgm'));
         
@@ -437,31 +715,60 @@ class GameLevel extends Phaser.Scene {
             .setOrigin(1, 1).setScrollFactor(0).setDepth(1000);
         this.tweens.add({ targets: demoText, alpha: 0, duration: 800, yoyo: true, repeat: -1 });
 
-        let mapKey;
-        if (this.isCorrectionRoom) {
-            mapKey = 'correction_room';
-        } else {
-            mapKey = `level${this.currentLevelData.level}`;
-            if (!this.cache.tilemap.exists(mapKey)) mapKey = 'level1';
-        }
+       let mapKey;
 
+if (this.isCorrectionRoom) {
+    mapKey = 'correction_room';
+} else {
+    // --- THE TRICK ---
+    // If we are on Level 26, use the Level 25 map file
+    if (this.currentLevelData.level === 26) {
+        mapKey = 'level25'; 
+    } else {
+        // Otherwise, look for the normal map (level1, level2, etc.)
+        mapKey = `level${this.currentLevelData.level}`;
+    }
+
+    // Safety fallback
+    if (!this.cache.tilemap.exists(mapKey)) mapKey = 'level1';
+}
+        
         const map = this.make.tilemap({ key: mapKey });
         const sunnyTiles = map.addTilesetImage('sunny_world', 'sunny_tiles_extruded', 16, 16, 1, 2);
         const dungeonTiles = map.addTilesetImage('dungeon_tiles', 'dungeon_tiles');
         const dungeonWalls = map.addTilesetImage('dungeon_walls', 'dungeon_walls');
         const labFloor = map.addTilesetImage('tilesFloor', 'laboratory_tiles') || map.addTilesetImage('laboratory_tiles', 'laboratory_tiles');
+        const labStuff = map.addTilesetImage('laboratory_stuff', 'laboratory_stuff');
         const labWalls = map.addTilesetImage('tilesWalls', 'laboratory_walls') || map.addTilesetImage('laboratory_walls', 'laboratory_walls');
-        const allTiles = [sunnyTiles, dungeonTiles, dungeonWalls, labFloor, labWalls].filter(t => t !== null);
+        const allTiles = [sunnyTiles, dungeonTiles, dungeonWalls, labFloor, labStuff, labWalls].filter(t => t !== null);
 
         const bridgesLayer = map.createLayer('Bridge', allTiles, 0, 0) || map.createLayer('around', allTiles, 0, 0);
         const groundLayer = map.createLayer('Ground', allTiles, 0, 0);
         const decorLayer = map.createLayer('Decoration', allTiles, 0, 0);
         const wallsLayer = map.createLayer('Walls', allTiles, 0, 0);
+        const overheadLayer = map.createLayer('Overhead', allTiles, 0, 0);
+
+if (overheadLayer) {
+    overheadLayer.setScale(3);
+    
+    // CRITICAL: Set depth higher than player (50) and lasers (usually 0-30)
+    overheadLayer.setDepth(100); 
+}
 
         if (bridgesLayer) { bridgesLayer.setScale(3); bridgesLayer.setDepth(5); }
         if (groundLayer) groundLayer.setScale(3);
         if (decorLayer) decorLayer.setScale(3);
         if (wallsLayer) { wallsLayer.setScale(3); wallsLayer.setCollisionByExclusion([-1]); }
+
+        if (!this.anims.exists('fire-anim')) {
+    this.anims.create({
+        key: 'fire-anim',
+        // Play all frames (0 to 24 approx)
+        frames: this.anims.generateFrameNumbers('fireball', { start: 0, end: 24 }), 
+        frameRate: 20, // Fast fire!
+        repeat: -1     // Loop forever
+    });
+}
 
         if (!this.anims.exists('idle-down')) {
             this.anims.create({ key: 'idle-down', frames: this.anims.generateFrameNumbers('hero_sheet', { start: 0, end: 5 }), frameRate: 8, repeat: -1 });
@@ -471,7 +778,14 @@ class GameLevel extends Phaser.Scene {
         }
         
         if (!this.anims.exists('orb-spin')) { this.anims.create({ key: 'orb-spin', frames: this.anims.generateFrameNumbers('orb', { start: 0, end: 7 }), frameRate: 10, repeat: -1 }); }
-        if (!this.anims.exists('lab-portal-idle')) { this.anims.create({ key: 'lab-portal-idle', frames: this.anims.generateFrameNumbers('lab_portal', { start: 0, end: 5 }), frameRate: 10, repeat: -1 }); }
+       if (!this.anims.exists('lab-portal-idle')) {
+    this.anims.create({
+        key: 'lab-portal-idle',
+        frames: this.anims.generateFrameNumbers('lab_portal', { start: 0, end: 3 }), // Check if you have 4 frames (0-3) or more!
+        frameRate: 8,
+        repeat: -1
+    });
+}
         if (!this.anims.exists('gem-blue-spin')) { this.anims.create({ key: 'gem-blue-spin', frames: this.anims.generateFrameNumbers('gem_blue', { start: 0, end: 3 }), frameRate: 8, repeat: -1 }); }
         if (!this.anims.exists('gem-green-spin')) { this.anims.create({ key: 'gem-green-spin', frames: this.anims.generateFrameNumbers('gem_green', { start: 0, end: 3 }), frameRate: 8, repeat: -1 }); }
         if (!this.anims.exists('gem-yellow-spin')) { this.anims.create({ key: 'gem-yellow-spin', frames: this.anims.generateFrameNumbers('gem_yellow', { start: 0, end: 3 }), frameRate: 8, repeat: -1 }); }
@@ -479,6 +793,10 @@ class GameLevel extends Phaser.Scene {
         let startX = this.isCorrectionRoom ? 400 : this.currentLevelData.playerStart.x;
         let startY = this.isCorrectionRoom ? 300 : this.currentLevelData.playerStart.y;
 
+        this.movingPlatforms = this.physics.add.group({
+        allowGravity: false, // Platforms float
+        immovable: true      // Player cannot push them
+    });
         this.player = this.physics.add.sprite(startX, startY, 'hero_sheet');
         this.player.play('idle-down'); 
         this.player.setScale(3);
@@ -504,8 +822,25 @@ class GameLevel extends Phaser.Scene {
 
         this.stoneGates = this.physics.add.group({ immovable: true, allowGravity: false }); 
         if (!this.isCorrectionRoom && this.currentLevelData.gatePos) {
-            let g = this.stoneGates.create(this.currentLevelData.gatePos.x, this.currentLevelData.gatePos.y, 'gate_locked');
-            g.setScale(3).setOrigin(0, 0).setDepth(40).setVisible(true);
+            // let g = this.stoneGates.create(this.currentLevelData.gatePos.x, this.currentLevelData.gatePos.y, 'gate_locked');
+            const isLab = (this.currentLevelData.level >= 18);
+            const textureKey = isLab ? 'scifi_gate_closed' : 'gate_locked';
+            let gate = this.stoneGates.create(
+        this.currentLevelData.gatePos.x, 
+        this.currentLevelData.gatePos.y, 
+        textureKey
+    );
+    
+            const size = isLab ? 4 : 3; 
+    
+    gate.setScale(size).setOrigin(0, 0).setDepth(40).setVisible(true);
+    
+    // 5. Adjust Hitbox
+    // Refresh the physics body to match the new scale/texture size
+    gate.body.setSize(gate.width, gate.height);
+
+    // 6. Tag it
+    gate.isSciFi = isLab;
         }
         this.physics.add.collider(this.player, this.stoneGates);
 
@@ -516,26 +851,78 @@ class GameLevel extends Phaser.Scene {
         this.setupUI(); 
 
         this.answerSlots = []; 
+this.levelLabels = []; // <--- NEW: Create the Death Note list
+
+this.answerSlots = []; 
+        this.levelLabels = []; // Keep your death note list!
+
+        // --- 1. MULTI-SLOT LOGIC (For complex answers like "29.8") ---
         if (this.isMultiSlot) {
             this.currentLevelData.slots.forEach((slotData, index) => {
-                let textureKey = (this.currentLevelData.level >= 19) ? 'lab_portal' : 'floor_items';
+                // Determine Texture: Use 'lab_portal' for Lab (19+), 'floor_items' for others
+                const isLab = (this.currentLevelData.level >= 19);
+                let textureKey = isLab ? 'lab_portal' : 'floor_items';
+                
                 let plate = this.physics.add.sprite(slotData.x, slotData.y, textureKey);
-                if (this.currentLevelData.level >= 19) plate.play('lab_portal-idle'); else plate.setFrame(30);
                 plate.setScale(3).setImmovable(true).setDepth(5); 
-                plate.body.setSize(10, 10).setOffset(3, 3);
+
+                // Setup Animation & Hitbox
+                if (isLab) {
+                    plate.play('lab-portal-idle'); 
+                    plate.body.setSize(12, 12).setOffset(2, 2); 
+                } else {
+                    plate.setFrame(30); // Old pressure plate frame
+                    plate.body.setSize(10, 10).setOffset(3, 3);
+                }
+
                 plate.requiredValue = slotData.requiredValue; 
-                this.add.text(slotData.x, slotData.y - 40, `Part ${index + 1}`, { fontSize: '16px', fontFamily: 'Ithaca', fill: '#ffff00' }).setOrigin(0.5);
+                
+                // Label (Part 1, Part 2, etc.)
+                let label = this.add.text(slotData.x, slotData.y - 40, `Part ${index + 1}`, { 
+                    fontSize: '16px', fontFamily: 'Ithaca', fill: '#ffff00', stroke: '#000', strokeThickness: 3 
+                }).setOrigin(0.5);
+
+                this.levelLabels.push(label); 
+                plate.myLabel = label;
+
                 this.answerSlots.push(plate);
             });
-        } else {
+        } 
+        // --- 2. SINGLE-SLOT LOGIC (Now supports Portals!) ---
+        else {
             let ansX = this.isCorrectionRoom ? 600 : this.currentLevelData.answerZone.x;
             let ansY = this.isCorrectionRoom ? 400 : this.currentLevelData.answerZone.y;
-            this.pressurePlate = this.physics.add.sprite(ansX, ansY, 'floor_items');
-            this.pressurePlate.setScale(3).setFrame(30).setImmovable(true).setDepth(5);
-            this.pressurePlate.body.setSize(10, 10).setOffset(3, 3);
+            
+            const isLab = (this.currentLevelData.level >= 19);
+            
+            // A. Create the correct sprite type
+            if (isLab) {
+                // LAB AREA: Use the Portal Sprite
+                this.pressurePlate = this.physics.add.sprite(ansX, ansY, 'lab_portal');
+                this.pressurePlate.play('lab-portal-idle');
+                this.pressurePlate.body.setSize(12, 12).setOffset(2, 2);
+            } else {
+                // NORMAL AREA: Use the Stone Plate
+                this.pressurePlate = this.physics.add.sprite(ansX, ansY, 'floor_items');
+                this.pressurePlate.setFrame(30);
+                this.pressurePlate.body.setSize(10, 10).setOffset(3, 3);
+            }
+
+            // B. Common Settings
+            this.pressurePlate.setScale(3).setImmovable(true).setDepth(5);
+            
+            // Add "ANSWER" label for single slots in Lab (Optional, but looks cool)
+            if (isLab) {
+                let label = this.add.text(ansX, ansY - 40, "ANSWER", { 
+                    fontSize: '16px', fontFamily: 'Ithaca', fill: '#ffff00', stroke: '#000', strokeThickness: 3 
+                }).setOrigin(0.5);
+                this.levelLabels.push(label);
+                this.pressurePlate.myLabel = label;
+            }
+
             this.answerSlots.push(this.pressurePlate); 
         }
-
+        
         this.blocks = this.physics.add.group();
         this.createBlocks();
 
@@ -579,8 +966,428 @@ class GameLevel extends Phaser.Scene {
              if (edge.landX !== undefined) this.handleBlockDrop(block, edge.landX, edge.landY);
         }, null, this);
 
+      // --- LEVEL 26: PROFESSOR SETUP (UPDATED) ---
+if (this.currentLevelData.level === 25) {
+    // 1. Spawn Professor (Standing below the gate)
+    // Gate Y is 1150, so we put him at 1200 to stand in front of it
+    this.npc = this.physics.add.sprite(882, 1360, 'professor_new'); 
+this.npc.setScale(3).setFrame(3);
+this.npc.play('prof-idle-up'); // <--- CHANGE THIS (Was setFrame or wrong anim)
+this.npc.setImmovable(true).setDepth(20);
+
+this.npcMarker = this.add.text(this.npc.x, this.npc.y - 50, '!', {
+        fontSize: '32px', fontFamily: 'Ithaca', fill: '#ffff00', stroke: '#000', strokeThickness: 4
+    }).setOrigin(0.5).setDepth(60);
+    
+    // Animate the marker floating up and down
+    this.tweens.add({ 
+        targets: this.npcMarker, 
+        y: this.npc.y - 60, 
+        duration: 500, 
+        yoyo: true, 
+        repeat: -1 
+    });
+
+    // 2. Spawn the Story Gate
+    // EXACT location you asked for:
+    this.storyGate = this.physics.add.sprite(865, 1255, 'scifi_gate_closed');
+    this.storyGate.setScale(4).setImmovable(true).setDepth(19);
+    
+    // Important: Tweaking the hitbox so the gate feels solid
+    this.storyGate.body.setSize(this.storyGate.width, this.storyGate.height);
+    this.physics.add.collider(this.player, this.storyGate);
+
+    let revealZone = this.add.zone(848, 427, 400, 50); // Width 400 covers the hallway
+this.physics.add.existing(revealZone);
+
+this.physics.add.overlap(this.player, revealZone, () => {
+    // Only trigger if we haven't done the reveal yet
+    if (!this.evilRevealPlayed) {
+        this.triggerEvilReveal();
+        revealZone.destroy(); // Remove trigger so it doesn't happen twice
+    }
+});
+}
+
+// --- PROFESSOR ANIMATIONS ---
+if (!this.anims.exists('prof-run-up')) {
+    
+    // 1. Walk Up (Frames 36, 37, 38 are the Up row for the white suit guy)
+    this.anims.create({
+        key: 'prof-run-up',
+        frames: this.anims.generateFrameNumbers('professor_new', { frames: [52, 53, 54, 55, 56, 57] }), 
+        frameRate: 6,
+        repeat: -1
+    });
+
+    // 2. Idle Up (Standing facing the door)
+    this.anims.create({
+        key: 'prof-idle-up',
+        frames: [ { key: 'professor_new', frame: 1 } ], 
+        frameRate: 20
+    });
+
+    // 3. Idle Down (Turning back to look at you)
+    this.anims.create({
+        key: 'prof-idle-down',
+        frames: [ { key: 'professor_new', frame: 3 } ], 
+        frameRate: 20
+    });
+}
         // --- INIT MOBILE CONTROLS ---
         this.mobileControls = new MobileControls(this);
+
+        if (this.currentLevelData.level === 26) {
+    // 1. Manually place player in the boss arena (Safe spot)
+    this.player.setPosition(843, 590); 
+    
+    // 2. Spawn the Professor nearby (Visual only)
+    this.npc = this.physics.add.sprite(845, 120, 'professor_new');
+    this.npc.setScale(3).play('prof-idle-down');
+
+    // 3. Start the Boss Mechanics immediately
+    this.startLevel26Gameplay();
+}
+
+        if (!this.anims.exists('laser-anim')) {
+    this.anims.create({
+        key: 'laser-anim',
+        // Frames 0, 1, 2, 3, 4 (Since your image has 5 parts)
+        frames: this.anims.generateFrameNumbers('laser', { start: 0, end: 4 }), 
+        frameRate: 15, // Speed of flickering
+        repeat: -1     // Loop forever
+    });
+}
+
+       // --- MOVING CARTS (OBSTACLES) ---
+// 1. Create the Group
+this.carts = this.physics.add.group({
+    allowGravity: false,
+    immovable: true
+});
+
+// 2. Find Objects (Check both names to be safe)
+const cartObjs = map.getObjectLayer('MovingCart')?.objects || map.getObjectLayer('MovingCart')?.objects || [];
+
+cartObjs.forEach(obj => {
+    // Create the sprite
+    let cart = this.carts.create(obj.x * 3, obj.y * 3, 'MovingCart');
+    cart.setScale(3).setOrigin(0, 0);
+    
+    // Make the hitbox slightly smaller so it's not unfair
+    cart.body.setSize(cart.width * 0.8, cart.height * 0.8);
+    cart.body.setOffset(cart.width * 0.1, cart.height * 0.1);
+    cart.mySound = this.sound.add('cart_loop', { 
+        loop: true, 
+        volume: 0 
+    });
+
+    // Get movement values
+    const moveX = obj.properties?.find(p => p.name === 'moveX')?.value || 0;
+    const moveY = obj.properties?.find(p => p.name === 'moveY')?.value || 0;
+
+    // Calculate Speed (100px per second)
+    const pixelsPerSecond = 600; 
+    const dist = Math.sqrt((moveX * 3) ** 2 + (moveY * 3) ** 2);
+    const calculatedDuration = (dist > 0) ? (dist / pixelsPerSecond) * 1000 : 1000;
+
+    // 3. Move the Cart (Visual Only)
+    this.tweens.add({
+        targets: cart,
+        x: cart.x + (moveX * 3),
+        y: cart.y + (moveY * 3),
+        duration: calculatedDuration,
+        yoyo: true,
+        repeat: -1,
+        ease: 'Sine.easeInOut',
+        hold: 0
+        // removed onUpdate "ride" logic
+    });
+    // --- NEW OBSTACLE: ARROWS ---
+this.arrows = this.physics.add.group({
+    allowGravity: false,
+    immovable: true
+});
+
+// Check for "Arrow" or "Arrows" layer name
+const arrowObjs = map.getObjectLayer('Arrow')?.objects || map.getObjectLayer('Arrows')?.objects || [];
+arrowObjs.forEach(obj => {
+    // 1. Create the Arrow
+    let arrow = this.arrows.create(obj.x * 3, obj.y * 3, 'arrow');
+    arrow.setScale(3).setOrigin(0.5, 0.5); // Center origin is better for rotation
+
+    // 2. Get Movement Values
+    const moveX = obj.properties?.find(p => p.name === 'moveX')?.value || 0;
+    const moveY = obj.properties?.find(p => p.name === 'moveY')?.value || 0;
+
+    // 3. AUTOMATIC ROTATION 🔄
+    // This calculates the angle so the arrow always points towards its destination
+    const angle = Phaser.Math.RadToDeg(Math.atan2(moveY, moveX));
+arrow.setAngle(angle + 90);
+
+    // 4. Adjust Hitbox based on Rotation
+    // If the arrow is vertical (90 or -90 degrees), we need to swap width/height 
+    // so the hitbox matches the new shape.
+    if (Math.abs(angle) === -90) {
+        arrow.body.setSize(10, 30); // Thin width, Tall height
+    } else {
+        arrow.body.setSize(30, 10); // Wide width, Short height
+    }
+    // Center the hitbox on the sprite
+    arrow.body.setOffset(
+        (arrow.width - arrow.body.width) / 2, 
+        (arrow.height - arrow.body.height) / 2
+    );
+
+    // 5. Speed & Tween Logic
+    const pixelsPerSecond = 1000; 
+    const dist = Math.sqrt((moveX * 3) ** 2 + (moveY * 3) ** 2);
+    const calculatedDuration = (dist > 0) ? (dist / pixelsPerSecond) * 1000 : 1000;
+
+    const textureOffset = 90; 
+const angleRad = Math.atan2(moveY, moveX);
+const angleDeg = Phaser.Math.RadToDeg(angleRad);
+
+const forwardAngle = angleDeg + textureOffset;
+const returnAngle = angleDeg + textureOffset + 180;
+
+// 2. Set Initial Angle
+arrow.setAngle(forwardAngle);
+
+// 3. The Tween
+this.tweens.add({
+    targets: arrow,
+    x: arrow.x + (moveX * 3),
+    y: arrow.y + (moveY * 3),
+    duration: calculatedDuration,
+    yoyo: true,
+    repeat: -1,
+    ease: 'Linear',
+    hold: 200,
+
+    // FORCE the angle when it turns around
+    onYoyo: () => {
+        arrow.setAngle(returnAngle);
+    },
+    
+    // FORCE the angle when it starts over
+    onRepeat: () => {
+        arrow.setAngle(forwardAngle);
+    }
+});
+});
+
+// 7. Collision (Death)
+this.physics.add.overlap(this.player, this.arrows, () => {
+    this.sound.play('gameover_sfx'); 
+    let respawnX = this.isCorrectionRoom ? 400 : this.currentLevelData.playerStart.x;
+    let respawnY = this.isCorrectionRoom ? 300 : this.currentLevelData.playerStart.y;
+    this.player.setPosition(respawnX, respawnY);
+    this.cameras.main.shake(200, 0.01);
+});
+});
+
+// 4. THE KILL SWITCH
+// If player touches a cart -> Respawn
+this.physics.add.overlap(this.player, this.carts, () => {
+    // A. Play sound
+    this.sound.play('gameover_sfx'); 
+    
+    // B. Respawn Player at start (Instant)
+    let respawnX = this.isCorrectionRoom ? 400 : this.currentLevelData.playerStart.x;
+    let respawnY = this.isCorrectionRoom ? 300 : this.currentLevelData.playerStart.y;
+    
+    this.player.setPosition(respawnX, respawnY);
+    
+    // C. (Optional) Camera shake for impact
+    this.cameras.main.shake(200, 0.01);
+});
+
+// --- NEW OBSTACLE: FIREBALLS (Animated) ---
+this.fireballs = this.physics.add.group({
+    allowGravity: false,
+    immovable: true
+});
+
+// Check for "Fireball" or "Fireballs" layer
+const fireObjs = map.getObjectLayer('Fireball')?.objects || map.getObjectLayer('Fireballs')?.objects || [];
+
+fireObjs.forEach(obj => {
+    // 1. Create the Sprite (NOT image)
+    let fire = this.fireballs.create(obj.x * 3, obj.y * 3, 'fireball');
+    fire.setScale(3).setOrigin(0.5, 0.5);
+    
+    // 2. PLAY ANIMATION
+    fire.play('fire-anim');
+
+    // 3. Movement Logic (Same as Arrow)
+    const moveX = obj.properties?.find(p => p.name === 'moveX')?.value || 0;
+    const moveY = obj.properties?.find(p => p.name === 'moveY')?.value || 0;
+
+    // 4. Calculate Angle
+    // Fire sprites usually point UP. We add 90 degrees so the "top" of the fire points forward.
+    const angle = Phaser.Math.RadToDeg(Math.atan2(moveY, moveX));
+    fire.setAngle(angle + 90); 
+    fire.mySound = this.sound.add('fire_loop', { 
+        loop: true, 
+        volume: 0 
+    });
+
+    // 5. Hitbox (Make it smaller/forgiving)
+    fire.body.setSize(10, 10);
+    fire.body.setCircle(5); // Circular hitbox is best for fireballs
+    fire.body.setOffset(5, 8);
+
+    // 6. Speed & Tween
+    const pixelsPerSecond = 250; // Slightly slower than arrows?
+    const dist = Math.sqrt((moveX * 3) ** 2 + (moveY * 3) ** 2);
+    const calculatedDuration = (dist > 0) ? (dist / pixelsPerSecond) * 1000 : 1000;
+
+    // Save start pos for looping
+    const startX = fire.x;
+    const startY = fire.y;
+
+    this.tweens.add({
+        targets: fire,
+        x: fire.x + (moveX * 3),
+        y: fire.y + (moveY * 3),
+        duration: calculatedDuration,
+        repeat: -1,
+        yoyo: false, // Fireballs usually don't fly backward, they respawn
+        ease: 'Linear',
+        hold: 200,
+        
+        // Loop Logic: Teleport back to start
+        onRepeat: () => {
+            fire.x = startX;
+            fire.y = startY;
+        }
+    });
+});
+
+// 7. Collision (Death)
+this.physics.add.overlap(this.player, this.fireballs, () => {
+    this.sound.play('gameover_sfx'); 
+    let respawnX = this.isCorrectionRoom ? 400 : this.currentLevelData.playerStart.x;
+    let respawnY = this.isCorrectionRoom ? 300 : this.currentLevelData.playerStart.y;
+    this.player.setPosition(respawnX, respawnY);
+    this.cameras.main.shake(200, 0.01);
+});
+// --- NEW OBSTACLE: LASERS ---
+this.lasers = this.physics.add.group({
+    allowGravity: false,
+    immovable: true
+});
+
+// Look for a layer named "Laser" or "Lasers"
+const laserObjs = map.getObjectLayer('Laser')?.objects || map.getObjectLayer('Lasers')?.objects || [];
+
+laserObjs.forEach(obj => {
+    // 1. Create Sprite
+    let laser = this.lasers.create(obj.x * 3, obj.y * 3, 'laser');
+    laser.setScale(7).setOrigin(0.5, 0.5);
+    laser.play('laser-anim');
+    laser.setDepth(10);
+
+    laser.mySound = this.sound.add('laser_loop', { 
+        loop: true, 
+        volume: 0 // Start silent
+    });
+
+    // 2. Movement Properties
+    const moveX = obj.properties?.find(p => p.name === 'moveX')?.value || 0;
+    const moveY = obj.properties?.find(p => p.name === 'moveY')?.value || 0;
+    
+    // 3. Interval Properties (NEW) ⏱️
+    // Default is 0 (Always ON) if you don't set it in Tiled
+    const interval = obj.properties?.find(p => p.name === 'interval')?.value || 0;
+    const offset = obj.properties?.find(p => p.name === 'offset')?.value || 0;
+    const customRotation = obj.properties?.find(p => p.name === 'rotation')?.value;
+    const isHorizontal = (customRotation === 90) || (moveX === 0 && moveY !== 0);
+
+    // 4. Smart Rotation (Vertical vs Horizontal)
+   // 4. SMART HITBOXES (Adjusted based on screenshot)
+    if (isHorizontal) {
+        // --- HORIZONTAL LASER ---
+        laser.setAngle(90); 
+        
+        // Fair Hitbox: Width 24 (Length), Height 14 (Thickness)
+        laser.body.setSize(28, 28);
+        laser.body.setOffset(4, 4); 
+        
+    } else {
+        // --- VERTICAL LASER ---
+        laser.setAngle(0);
+
+        // Fair Hitbox: Width 14 (Thickness), Height 24 (Length)
+        laser.body.setSize(28, 28);
+        laser.body.setOffset(4, 4);
+    }
+    
+    // 5. MOVEMENT TWEEN
+    const pixelsPerSecond = 200; 
+    const dist = Math.sqrt((moveX * 3) ** 2 + (moveY * 3) ** 2);
+    const calculatedDuration = (dist > 0) ? (dist / pixelsPerSecond) * 1000 : 1000;
+
+    if (dist > 0) {
+        this.tweens.add({
+            targets: laser,
+            x: laser.x + (moveX * 3),
+            y: laser.y + (moveY * 3),
+            duration: calculatedDuration,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut',
+            hold: 500
+        });
+    }
+
+    // 6. THE BLINKING LOGIC (The Interval) 💡
+    if (interval > 0) {
+        // Start the timer loop
+        this.time.addEvent({
+            delay: interval,
+            loop: true,
+            startAt: offset, // Starts the cycle at different times if set
+            callback: () => {
+                // Toggle Visibility
+                laser.setVisible(!laser.visible);
+                
+                // Toggle Deadly Hitbox
+                // If visible = Enable Body (Deadly)
+                // If hidden  = Disable Body (Safe)
+                laser.body.enable = laser.visible;
+            }
+        });
+    }
+
+    this.physics.add.overlap(this.player, this.lasers, () => {
+    this.sound.play('gameover_sfx', { volume: 0.2 }); 
+    let respawnX = this.isCorrectionRoom ? 500 : this.currentLevelData.playerStart.x;
+    let respawnY = this.isCorrectionRoom ? 300 : this.currentLevelData.playerStart.y;
+    this.player.setPosition(respawnX, respawnY);
+    this.cameras.main.shake(200, 0.01);
+});
+});
+this.input.keyboard.on('keydown-T', () => {
+    console.log("DEBUG: Teleporting to Finale...");
+    
+    // 1. Clear any old detention flags so the game doesn't get confused
+    localStorage.setItem('isInDetention', 'false');
+    localStorage.removeItem('detentionReturnLevel');
+
+    // 2. Find Level 25 Data
+    const level25Data = levels.find(l => l.level === 25);
+    
+    // 3. Launch it immediately
+    this.scene.start('GameLevel', { 
+        ...level25Data, 
+        isCorrectionRoom: false 
+    });
+});
+
+
+        
     }
 
     createBlocks() {
@@ -614,7 +1421,7 @@ class GameLevel extends Phaser.Scene {
             let block = this.blocks.create(blockPos.x, blockPos.y, spriteKey).setScale(3);
             if (animKey) block.play(animKey);
 
-            block.setDrag(1000).setBounce(1).setCollideWorldBounds(true);
+            block.setDrag(1000).setBounce(1).setCollideWorldBounds(false);
             block.setDepth(30); 
             block.body.setSize(10, 15).setOffset(3, 1);
             block.value = val;
@@ -625,19 +1432,23 @@ class GameLevel extends Phaser.Scene {
             block.updateText = function() { text.x = this.x; text.y = this.y; };
             yPos += 150;
         });
+
+        this.darknessOverlay = this.add.image(this.player.x, this.player.y, 'vignette')
+    .setDepth(999) // On top of everything (UI is 1000+)
+    .setAlpha(0);  // Start invisible
     }
 
     setupUI() {
-        let restartBtn = this.add.image(40, 40, 'btn_restart').setInteractive().setScale(0.21).setScrollFactor(0);
+        let restartBtn = this.add.image(40, 40, 'btn_restart').setInteractive().setScale(0.21).setScrollFactor(0).setDepth(1000);
         restartBtn.on('pointerdown', () => { 
             this.sound.play('click_sfx');
             this.physics.pause(); this.scene.restart(); 
         });
         this.input.keyboard.on('keydown-R', () => { this.physics.pause(); this.scene.restart(); });
 
-        let pauseBtn = this.add.image(100, 40, 'btn_pause').setInteractive().setScale(0.21).setScrollFactor(0).setDepth(100);
+        let pauseBtn = this.add.image(100, 40, 'btn_pause').setInteractive().setScale(0.21).setScrollFactor(0).setDepth(1000);
         
-        this.pauseMenuContainer = this.add.container(0, 0).setScrollFactor(0).setDepth(300).setVisible(false);
+        this.pauseMenuContainer = this.add.container(0, 0).setScrollFactor(0).setDepth(3000).setVisible(false);
         
         let overlay = this.add.rectangle(400, 300, 800, 600, 0x000000, 0.7).setOrigin(0.5);
         overlay.setScrollFactor(0);
@@ -726,7 +1537,7 @@ class GameLevel extends Phaser.Scene {
             }
         });
 
-        this.dialogContainer = this.add.container(400, 50).setScrollFactor(0).setDepth(200).setVisible(false);
+        this.dialogContainer = this.add.container(400, -200).setScrollFactor(0).setDepth(2001).setVisible(false);
         this.dialogContainer.add(this.add.nineslice(0, 0, 'dialog_bg', 0, 700, 150, 10, 10, 10, 10));
         this.dialogText = this.add.text(0, 0, '', { fontSize: '20px', fontFamily: 'Ithaca', color: '#4a3d2e', wordWrap: { width: 650 }, align: 'center' }).setOrigin(0.5);
         this.dialogContainer.add(this.dialogText);
@@ -734,22 +1545,51 @@ class GameLevel extends Phaser.Scene {
         this.interactPrompt = this.add.text(0, 0, 'Press E to talk', { fontSize: '20px', fontFamily: 'Ithaca', backgroundColor: '#000' }).setOrigin(0.5).setDepth(101).setVisible(false);
         
         let levelTitle = this.isCorrectionRoom ? "CORRECTION ROOM" : `Level ${this.currentLevelData.level}`;
-        const qContainer = this.add.container(400, 40).setScrollFactor(0).setDepth(100);
+        const qContainer = this.add.container(400, 40).setScrollFactor(0).setDepth(2000);
         qContainer.add(this.add.nineslice(0, 0, 'dialog_bg', 0, 500, 60, 10, 10, 10, 10));
-        qContainer.add(this.add.text(0, 0, `${levelTitle}: ${this.currentLevelData.question}`, { fontSize: '28px', fontFamily: 'Ithaca', fill: '#4a3d2e', wordWrap: { width: 480 }, align: 'center' }).setOrigin(0.5));
+        this.missionLabel = this.add.text(0, 0, `${levelTitle}: ${this.currentLevelData.question}`, { 
+    fontSize: '28px', 
+    fontFamily: 'Ithaca', 
+    fill: '#4a3d2e', 
+    wordWrap: { width: 480 }, 
+    align: 'center' 
+}).setOrigin(0.5);
+
+qContainer.add(this.missionLabel);
     }
 
     handleInteraction() {
-        if (this.npc && !this.isCorrectionRoom && this.currentLevelData.level === 1) {
-            const dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.npc.x, this.npc.y);
-            if (dist < 80) {
+    // 1. SAFETY CHECK: Is there an NPC?
+    if (this.npc && !this.isCorrectionRoom) {
+        
+        // 2. CALCULATE DISTANCE (This was missing!)
+        const dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.npc.x, this.npc.y);
+        
+        // 3. CHECK DISTANCE
+        if (dist < 80) {
+            // --- LEVEL 1 DIALOGUE ---
+            if (this.currentLevelData.level === 1) {
                 this.showDialogue("PROF. PRIME:\n----------------\nHurry! Use Arrow Keys to move.\nPush the correct Answer Gem into the Platform!");
+            } 
+            // --- LEVEL 25 DIALOGUE ---
+            else if (this.currentLevelData.level === 25) {
+                if (this.storyGate && this.storyGate.texture.key === 'scifi_gate_closed') {
+                    this.showDialogue("PROF. PRIME:\n----------------\nI'm hacking the mainframe...\nThe firewall is tough!\nSolve the equation to override the lock!");
+                }
             }
         }
     }
+}
 
     update(time, delta) {
         if (this.isGameFinished || this.isLevelComplete) return; 
+
+        if (this.isCutscenePlaying) {
+        this.player.setVelocity(0, 0);
+        this.player.anims.play('idle-down', true); // Force stand still
+        if (this.npcMarker) this.npcMarker.destroy();
+        return; // Stop processing controls
+    }
 
         // --- INTERACTION ---
         if (Phaser.Input.Keyboard.JustDown(this.keyE)) { this.handleInteraction(); }
@@ -836,36 +1676,103 @@ class GameLevel extends Phaser.Scene {
             }
         });
 
-        if (this.npc && !this.isCorrectionRoom && this.currentLevelData.level === 1) {
+        if (this.npc && !this.isCorrectionRoom && (this.currentLevelData.level === 1 || this.currentLevelData.level === 25)) {
             const dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.npc.x, this.npc.y);
             if (dist < 80) {
-                if (this.player.x < this.npc.x) {
-                    this.npc.setFlipX(true); 
-                } else {
-                    this.npc.setFlipX(false); 
-                }
+                if (this.player.x < this.npc.x) this.npc.setFlipX(true); 
+        else this.npc.setFlipX(false); 
 
-                this.interactPrompt.setPosition(this.npc.x, this.npc.y - 50).setVisible(true);
-                if (this.npcMarker) this.npcMarker.setVisible(false);
-            } else {
-                this.interactPrompt.setVisible(false);
-                if (this.npcMarker) this.npcMarker.setVisible(true);
-                this.hideDialogue();
-            }
-        }
+        this.interactPrompt.setPosition(this.npc.x, this.npc.y - 50).setVisible(true);
+        if (this.npcMarker) this.npcMarker.setVisible(false);
+    } else {
+        // Hide Prompt
+        this.interactPrompt.setVisible(false);
+        if (this.npcMarker) this.npcMarker.setVisible(true);
+        this.hideDialogue();
+    }
+}
 
+        // --- DEBUG TOGGLE ---
         if (this.debugEnabled) {
+            // 1. DEFINE THE VARIABLES (This is what was missing!)
             const mouseX = this.input.mousePointer.worldX;
             const mouseY = this.input.mousePointer.worldY;
             const playerX = this.player.x;
             const playerY = this.player.y;
             
+            // 2. Create Text Object if needed
             if (!this.debugText) {
                 this.debugText = this.add.text(0, 0, '', { fontSize: '16px', fontFamily: 'monospace', fill: '#00ff00', backgroundColor: '#000000', padding: { x: 10, y: 10 } }).setOrigin(0).setScrollFactor(0).setDepth(500);
             }
+
+            // 3. Update Text (Uses playerX, so it must be defined above!)
             this.debugText.setText(`Player: (${Math.round(playerX)}, ${Math.round(playerY)})\nMouse: (${Math.round(mouseX)}, ${Math.round(mouseY)})`);
             this.debugText.setPosition(10, 70);
+
+            // 4. Create/Show Hitboxes (The previous fix)
+            if (!this.physics.world.debugGraphic) {
+                this.physics.world.createDebugGraphic();
+            }
+            this.physics.world.debugGraphic.setVisible(true);
+
+        } else {
+            // 5. Hide everything when debug is OFF
+            if (this.physics.world.debugGraphic) {
+                this.physics.world.debugGraphic.setVisible(false);
+            }
+
+            if (this.debugText) {
+                this.debugText.destroy();
+                this.debugText = null;
+            }
         }
+
+        if (this.darknessOverlay) {
+    this.darknessOverlay.x = this.player.x;
+    this.darknessOverlay.y = this.player.y;
+
+    // --- PROXIMITY SOUND MANAGER ---
+const updateSpatialSound = (group, maxDistance) => {
+    if (!group) return; // Safety check
+
+    group.children.each(obj => {
+        // Skip if this object doesn't have a sound attached
+        if (!obj.mySound) return;
+
+        // 1. Calculate Distance
+        const dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, obj.x, obj.y);
+
+        // 2. Check Range
+        if (dist < maxDistance && obj.visible) {
+            
+            // Calculate Volume (Closer = Louder)
+            const volume = 1 - (dist / maxDistance);
+
+            // Start playing if it stopped (e.g., just blinked ON)
+            if (!obj.mySound.isPlaying) {
+                obj.mySound.play();
+            }
+            
+            // Adjust volume dynamically
+            obj.mySound.setVolume(volume);
+        
+        } else {
+            // Silence the sound if:
+            // 1. Player is too far away OR
+            // 2. Laser blinked OFF (Invisible)
+            if (obj.mySound.isPlaying) {
+                obj.mySound.stop();
+            }
+        }
+    });
+};
+
+// --- RUN THE MANAGER FOR EACH GROUP ---
+// Adjust the numbers (300, 400) to change hearing range in pixels
+updateSpatialSound(this.lasers, 300);    // Lasers: Hear within 300px
+updateSpatialSound(this.carts, 400);     // Carts: Hear within 400px (Loud!)
+updateSpatialSound(this.fireballs, 250); // Fire: Hear within 250px
+}
     }
 
     handleBlockDrop(block, destX, destY) {
@@ -876,23 +1783,136 @@ class GameLevel extends Phaser.Scene {
         this.tweens.add({ targets: block.myText, x: destX, y: destY, duration: 600, ease: 'Cubic.easeOut' });
     }
 
-    activatePortal() {
-        if (this.portal.visible) return;
-        
-        this.portal.setVisible(true); 
-        this.portal.body.enable = true; 
-        this.portal.play('portal-spin');
-        
-        this.stoneGates.children.iterate((gate) => { 
-            if (gate) { 
-                gate.setTexture('gate_open'); 
-                gate.body.enable = false; 
-            } 
-        });
-        
-        this.add.text(400, 300, "GATE OPENED!", { fontSize: '32px', fontFamily: 'Ithaca', color: '#00ff00', stroke: '#000', strokeThickness: 4 }).setOrigin(0.5).destroy({ fromScene: true, delay: 2000 });
-    }
+   triggerGateCutscene() {
+    if (this.cutscenePlayed) return;
+    this.cutscenePlayed = true;
+    this.isCutscenePlaying = true; // Freeze Player
+    this.player.setVelocity(0,0);
+    this.player.anims.play('idle-down', true);
 
+    // 1. Camera Pans to Professor
+    this.cameras.main.stopFollow();
+    this.cameras.main.pan(this.npc.x, this.npc.y, 800, 'Sine.easeInOut');
+
+    // 2. Professor walks UP to the Gate
+    this.time.delayedCall(1000, () => {
+        
+        this.npc.play('prof-run-up'); // <--- FIXED: Uses Professor texture
+        
+        // Walk from 1300 -> 1295 (Short step)
+        this.tweens.add({
+            targets: this.npc,
+            y: this.storyGate.y + 40, 
+            duration: 1000,
+            onComplete: () => {
+                this.npc.play('prof-idle-up'); // <--- FIXED
+                this.showDialogue("PROF. PRIME:\nACCESS GRANTED!\nFOLLOW ME TO THE CORE!");
+
+                // 4. Gate Opens
+                this.time.delayedCall(2000, () => {
+                    this.hideDialogue();
+                    this.sound.play('snap_sfx'); 
+                    this.storyGate.setTexture('scifi_gate_open');
+                    this.storyGate.body.enable = false;
+
+                    // 5. Run to Final Destination
+                    this.time.delayedCall(500, () => {
+                        this.npc.play('prof-run-up'); // <--- FIXED
+
+                        this.tweens.add({
+                            targets: this.npc,
+                            x: 845, 
+                            y: 120, 
+                            duration: 3500,
+                            ease: 'Linear',
+                            onComplete: () => {
+                                this.npc.play('prof-idle-down'); // <--- FIXED
+                                
+                                // Return Camera
+                                this.cameras.main.pan(this.player.x, this.player.y, 1000, 'Sine.easeInOut', false, (camera, progress) => {
+                                    if (progress === 1) {
+                                        this.cameras.main.startFollow(this.player);
+                                        this.isCutscenePlaying = false; 
+                                    }
+                                });
+                            }
+                        });
+                    });
+                });
+            }
+        });
+    });
+}
+
+triggerEvilReveal() {
+    this.evilRevealPlayed = true;
+    this.isCutscenePlaying = true;
+    this.player.setVelocity(0,0);
+    this.player.anims.play('idle-up', true);
+
+    this.cameras.main.stopFollow();
+    this.cameras.main.pan(this.npc.x, this.npc.y, 1000, 'Power2');
+
+    this.time.delayedCall(1200, () => {
+        this.npc.play('prof-idle-down'); 
+        this.sound.stopByKey('lab_bgm');
+        this.sound.play('boss_bgm', { volume: 0.6, loop: true });
+
+        this.showDialogue("PROF. PRIME:\nExcellent work... You have solved every variable... Except ONE.");
+
+        this.time.delayedCall(4000, () => {
+            this.showDialogue("PROF. PRIME:\nI am the outlier.\nAnd you are just a remainder.\nGoodbye.");
+            
+            // --- WAIT FOR DIALOGUE TO FINISH ---
+            this.time.delayedCall(3000, () => {
+                this.hideDialogue();
+                
+                // --- CAMERA RETURNS TO PLAYER ---
+                this.cameras.main.pan(this.player.x, this.player.y, 800, 'Power2', false, (camera, progress) => {
+                    if (progress === 1) {
+                        this.cameras.main.startFollow(this.player);
+                        this.isCutscenePlaying = false; 
+                        
+                        // --- !!! TRIGGER THE NEW GAMEPLAY HERE !!! ---
+                        this.startLevel26Gameplay(); 
+                    }
+                });
+            });
+        });
+    });
+}
+    activatePortal() {
+    if (this.portal.visible) return;
+
+    if (this.currentLevelData.level === 25) {
+        this.triggerGateCutscene();
+        // We return here so we don't accidentally run the standard portal logic yet
+        // The portal will naturally appear/be accessible after the cutscene finishes
+        // or you can manually enable the exit portal inside the cutscene function.
+        // For now, let's just enable the portal silently so it's ready when player arrives:
+        return; 
+    }
+    
+    this.portal.setVisible(true); 
+    this.portal.body.enable = true; 
+    this.portal.play('portal-spin');
+
+    this.stoneGates.children.iterate((gate) => { 
+        if (gate) { 
+            // --- NEW CHECK ---
+            if (gate.isSciFi) {
+                gate.setTexture('scifi_gate_open'); // Swap to Sci-Fi Open
+            } else {
+                gate.setTexture('gate_open');       // Swap to Stone Open
+            }
+            
+            // Disable collisions so you can walk through
+            gate.body.enable = false; 
+        } 
+    });
+    
+    this.add.text(400, 300, "ACCESS GRANTED!", { fontSize: '32px', fontFamily: 'Ithaca', color: '#00ff00', stroke: '#000', strokeThickness: 4 }).setOrigin(0.5).destroy({ fromScene: true, delay: 2000 });
+}
     handleWin() {
         this.isGameFinished = true;
         this.isLevelComplete = true;
@@ -912,21 +1932,29 @@ class GameLevel extends Phaser.Scene {
             this.cameras.main.fade(500, 0, 0, 0);
             this.time.delayedCall(600, () => {
                 if (this.isCorrectionRoom) {
-                    localStorage.setItem('isInDetention', 'false');
-                    localStorage.removeItem('detentionReturnLevel');
-                    const levelToRetry = levels.find(l => l.level === this.returnToLevelNum);
-                    if (levelToRetry) {
-                        this.scene.start('GameLevel', { ...levelToRetry, isCorrectionRoom: false });
-                    } else {
-                        this.scene.start('MainMenu'); 
-                    }
-                } else {
-                    if (this.currentLevelData.level === 20) {
+    localStorage.setItem('isInDetention', 'false');
+    const returnLvl = this.returnToLevelNum; // Save this number before deleting
+    localStorage.removeItem('detentionReturnLevel');
+    
+    const levelToRetry = levels.find(l => l.level === returnLvl);
+
+    if (levelToRetry) {
+        // Add a special flag 'isBossRetry' if returning to level 26
+        this.scene.start('GameLevel', { 
+            ...levelToRetry, 
+            isCorrectionRoom: false,
+            isBossRetry: (returnLvl === 26) 
+        });
+    } else {
+        this.scene.start('MainMenu'); 
+    }
+} else {
+                    if (this.currentLevelData.level === 25) {
                         this.scene.start('GameWon');
                     } else {
                         let nextLevelNum;
-                        if (this.currentLevelData.level === 6) nextLevelNum = 12;
-                        else if (this.currentLevelData.level === 12) nextLevelNum = 20;
+                        if (this.currentLevelData.level === 11) nextLevelNum = 12;
+                        else if (this.currentLevelData.level === 19) nextLevelNum = 20;
                         else nextLevelNum = this.currentLevelData.level + 1;
 
                         const nextLevelData = levels.find(l => l.level === nextLevelNum);
@@ -1008,6 +2036,144 @@ class GameLevel extends Phaser.Scene {
         if (this.typingTimer) this.typingTimer.remove();
         this.tweens.add({ targets: this.dialogContainer, y: -200, duration: 300, ease: 'Power2.in', onComplete: () => { this.dialogContainer.setVisible(false); this.dialogText.setText(''); } });
     }
+
+   startLevel26Gameplay() {
+    // 1. Update Internal Level Data
+    // We manually overwrite the data to match the PDF question exactly
+    const level26Data = {
+        level: 26,
+        question: "Integration: Area under y=x from 0 to 4", 
+        answer: "8", 
+        playerStart: { x: 800, y: 500 }
+    };
+    this.currentLevelData = level26Data; 
+
+    localStorage.setItem('lastPlayedLevel', 26);
+
+    // 2. Update the UI Text
+    if (this.missionLabel) {
+        this.missionLabel.setText(`FINAL BOSS: ${level26Data.question}`);
+        this.missionLabel.setColor('#ff0000'); 
+        
+        this.tweens.add({
+            targets: this.missionLabel,
+            alpha: 0,
+            duration: 200,
+            yoyo: true,
+            repeat: 3
+        });
+    }
+
+    // --- 3. CLEANUP ---
+    this.blocks.children.each(block => {
+        if (block.myText) block.myText.destroy();
+    });
+    this.blocks.clear(true, true); 
+
+    if (this.levelLabels) {
+        this.levelLabels.forEach(lbl => { if (lbl) lbl.destroy(); });
+        this.levelLabels = [];
+    }
+
+    if (this.answerSlots) {
+        this.answerSlots.forEach(slot => {
+            if (slot.myLabel) slot.myLabel.destroy();
+            slot.destroy();
+        });
+        this.answerSlots = [];
+    }
+
+    // --- 4. SPAWN NEW CONTENT ---
+
+    // A. Spawn ONE Central Slot for the Final Answer "8"
+    // Placing it in the middle forces the player to brave the center of the arena
+    const slotX = 848; 
+    const slotY = 300;
+    
+    let plate = this.physics.add.sprite(slotX, slotY, 'lab_portal');
+    plate.play('lab-portal-idle');
+    plate.setScale(3).setImmovable(true).setDepth(5);
+    plate.body.setSize(12, 12).setOffset(2, 2);
+    plate.requiredValue = "8"; // <--- THE CORRECT ANSWER
+
+    let label = this.add.text(slotX, slotY - 40, "FINAL ANSWER", { 
+        fontSize: '16px', fontFamily: 'Ithaca', fill: '#ffff00', stroke: '#000', strokeThickness: 3 
+    }).setOrigin(0.5);
+
+    this.levelLabels.push(label);
+    plate.myLabel = label; 
+    this.answerSlots.push(plate);
+
+    // B. Spawn Blocks (Must include "8")
+    const newBlocks = [
+        { x: 750, y: 400, val: "8" },   // <--- CORRECT ORB
+        { x: 950, y: 400, val: "4" },   // Distraction (Base)
+        { x: 848, y: 500, val: "16" },  // Distraction (If they forget to divide by 2)
+        { x: 700, y: 350, val: "x" },   // Distraction (Variable)
+        { x: 1000, y: 350, val: "0" }   // Distraction (Lower bound)
+    ];
+
+    newBlocks.forEach(blockData => {
+        let block = this.blocks.create(blockData.x, blockData.y, 'orb').setScale(3);
+        block.play('orb-spin');
+        block.setDrag(1000).setBounce(1).setCollideWorldBounds(true);
+        block.setDepth(30);
+        block.body.setSize(10, 15).setOffset(3, 1);
+        block.value = blockData.val;
+
+        let text = this.add.text(0, 0, blockData.val, { 
+            fontSize: '24px', color: '#ffffff', stroke: '#000', strokeThickness: 4, fontFamily: 'Ithaca', fontStyle: 'bold' 
+        }).setOrigin(0.5).setDepth(30);
+        
+        block.myText = text;
+        block.updateText = function() { text.x = this.x; text.y = this.y; };
+    });
+
+    // 5. Start the Darkness Mechanic
+    this.startLightsOutMechanic();
+}
+
+startLightsOutMechanic() {
+    // 1. Initial "Power Down" (Goes dark)
+    this.tweens.add({
+        targets: this.darknessOverlay,
+        alpha: 0.95, // Very dark, only flashlight visible
+        duration: 2000,
+        ease: 'Power2'
+    });
+
+    // 2. The Random Flicker Loop
+    this.time.addEvent({
+        delay: 5000, // Every 5 seconds
+        loop: true,
+        callback: () => {
+            // Randomly choose: Flicker or Pitch Black?
+            if (Math.random() > 0.5) {
+                // FLICKER (Strobe light effect)
+                this.tweens.add({
+                    targets: this.darknessOverlay,
+                    alpha: 0.2, // Bright
+                    duration: 50,
+                    yoyo: true,
+                    repeat: 5, // Blink 5 times
+                    onComplete: () => {
+                        this.darknessOverlay.setAlpha(0.95); // Return to dark
+                    }
+                });
+            } else {
+                // TOTAL BLACKOUT (0.5 seconds of pure darkness)
+                this.tweens.add({
+                    targets: this.darknessOverlay,
+                    alpha: 1, // Full black (player can't see anything)
+                    duration: 100,
+                    yoyo: true,
+                    hold: 500
+                });
+            }
+        }
+    });
+}
+
 }
 
 class GameWon extends Phaser.Scene {
