@@ -496,6 +496,27 @@ class MainMenu extends Phaser.Scene {
             }
         }, canContinue);
 
+        const watermark = this.add.text(400, 300, 'DEMO VERSION', { 
+            fontSize: '90px',       
+            fontFamily: 'Ithaca',   
+            fill: '#ffffff', 
+            stroke: '#000000',
+            strokeThickness: 4
+        });
+
+        watermark.setOrigin(0.5);      
+        watermark.setAlpha(0.30);      
+        watermark.setDepth(0);         
+        watermark.setAngle(-25);       
+        
+        this.tweens.add({
+            targets: watermark,
+            alpha: 0.50,
+            duration: 2000,
+            yoyo: true,
+            repeat: -1
+        });
+
     }
 
     update() {
@@ -1046,6 +1067,29 @@ if (!this.anims.exists('prof-run-up')) {
     this.startLevel26Gameplay();
 }
 
+const watermark = this.add.text(400, 300, 'DEMO VERSION', { 
+            fontSize: '90px',       
+            fontFamily: 'Ithaca',   
+            fill: '#ffffff', 
+            stroke: '#000000',
+            strokeThickness: 4
+        });
+
+        watermark.setOrigin(0.5);      
+        watermark.setAlpha(0.35);      
+        watermark.setScrollFactor(0); 
+        watermark.setDepth(10000);     
+        watermark.setAngle(-25);       
+        
+        // Optional: Make it pulse slowly
+        this.tweens.add({
+            targets: watermark,
+            alpha: 0.25,
+            duration: 2000,
+            yoyo: true,
+            repeat: -1
+        });
+
         if (!this.anims.exists('laser-anim')) {
     this.anims.create({
         key: 'laser-anim',
@@ -1369,6 +1413,8 @@ laserObjs.forEach(obj => {
     let respawnY = this.isCorrectionRoom ? 300 : this.currentLevelData.playerStart.y;
     this.player.setPosition(respawnX, respawnY);
     this.cameras.main.shake(200, 0.01);
+
+    
 });
 });
         
