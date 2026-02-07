@@ -291,7 +291,7 @@ const levels = [
     },
     { 
         level: 21,
-        question: "Richter R(x)=ln(x). Rate at x=5? (Assemble: 0.2)", 
+        question: "Richter R(x)=ln(x). Rate at x=5?", 
         answer: "0.2", 
         multiAnswer: true,
         slots: [
@@ -312,7 +312,7 @@ const levels = [
     },
     { 
         level: 22,
-        question: "Lamp B(t)=log(3t^3). Rate at t=2? (Assemble: 1.5)", 
+        question: "Lamp B(t)=log(3t^3). Rate at t=2?", 
         answer: "1.5", 
         multiAnswer: true,
         slots: [
@@ -1099,8 +1099,6 @@ const watermark = this.add.text(400, 300, 'DEMO VERSION', {
         repeat: -1     
     });
 }
-
-       
 
 this.carts = this.physics.add.group({
     allowGravity: false,
@@ -2165,6 +2163,9 @@ triggerFinaleCutscene() {
         playerStart: { x: 800, y: 500 }
     };
     this.currentLevelData = level26Data; 
+
+    this.correctAnswer = level26Data.answer; 
+    this.isMultiSlot = false;
 
     localStorage.setItem('lastPlayedLevel', 26);
 
